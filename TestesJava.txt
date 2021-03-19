@@ -1,0 +1,176 @@
+### Testes Unitários com JUnit4
+## Conceitos de JUnit4
+- Framework simples e de código aberto
+- Testes Unitários
+- Organização do código
+- Testar sempre
+
+IntelliJ: Novo Projeto > Maven
+src > main > java > New > Project > com.teste
+src > test > java > New > Project > com.teste
+
+Adicionar no pom.xml:
+
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+src > main > java > com.teste > New > Java Class > Calculadora
+
+Mouse em cima da classe Calculadora, Alt+Enter
+Create Test > 
+Selecionar o método a testar (no caso somar) > Finish
+
+Implementar o teste
+Run Test
+
+
+## Asserts
+- Afirmação
+Para validação dos testes são usados asserts. Estes indicam se os resultados coincidem com o esperado em um ponto do código.
+- Assertions para tipos primitivos, Objetos e arrays
+- Import static
+- Ordem dos parâmetros: Esperado, atual
+
+# Criar classe para testar os Asserts
+src > test > java > com.teste > New > Java Class > AssertTest
+
+
+## Rules
+- O que é?
+Rule é um componente que intercepta uma chamada para o método do teste. Permite que façamos algo durante ou após o método rodar.
+
+- Interface TestRule
+- O que fazer?
+Podemos criar arquivos, diretórios que serão deletados após o método ser executado, falhar um teste sem estar em um modo específico, configurar um recurso externo como um software ou uma conexão com um banco de dados antes do método ser executado e liberar o recurso no final.
+
+src > test > java > com.teste > New > Java Test > RuleTest
+
+
+## Testando Exceções
+- Exceções esperadas
+- Exceções esperadas Rule
+- Try/Catch idiom
+
+src > test > java > com.teste > New > Java Test > ExceptionTest
+
+Sempre quando o projeto é buildado (install), ele realiza todos os testes.
+
+
+
+### Explorando Mocks e Asserts
+## Trabalhando com Mocks
+# O que são Mocks?
+- Objetos Mock, objetos simulados ou simplesmente Mock
+É um termo utilizado para descrever objetos que simulam o comportamento de objetos reais de forma controlada.
+
+- Razões para usar
+Em testes unitários, criamos os mocks em situações onde não é possível usar os objetos reais
+
+- Limitações
+Se o objeto não for simulado corretamente, ele pode passar no teste de maneira errada.
+
+# Frameworks
+- Mockito
+- EasyMock
+- PowerMockito
+
+# Exemplo com Mockito
+IntelliJ:
+File > Project Structure > Global Libraries:
+Add > From Maven > Search "Mockito-all" > OK > OK
+
+
+## O que é e como usar Asserts
+# Asserts
+- Definição
+Asserts são métodos utilitários usados para determinar se um caso de teste teve sucesso ou não.
+- Como usar:
+	Assert.assertEquals(...) // Usados diretamente
+	import static org.junit.Assert.*; // Através de import static
+	...
+	AssertEquals(...);
+- Métodos
+Junit sobrecarrega asserts para todos os tipos primitivos, objetos e arrays.
+
+## Hamcrest e Matcher
+# Hamcrest
+- Definição
+Hamcrest é um framework utilizado para teste unitário. Funciona com Junit e usa predicados existentes para fazer Asserts. Usamos apenas a declaração AssertThat, com os matchers adequados. É preciso criar a dependency no pom.xml
+
+- Setup
+
+- Exemplo
+
+# Matcher
+- Object Matcher
+- Bean Matcher
+- Collection Matcher
+- Number Matcher
+- Text Matcher
+
+
+## AssertJ
+Framework que permite escrever asserts mais fluentes, de mais fácil compreensão. É preciso criar a dependency no pom.xml.
+
+Para escrever o assert é preciso passar o object para o AssertThat e depois Asserts reais.
+
+Person person = new Person("Barrack", "Obama");
+Person personClone = person;
+// O teste passa pois é a mesma referência
+Person personClone = new Person("Barrack", "Obama");
+// O teste falha pois é uma nova instância
+
+assertThat(person).isEqualTo(personClone)
+
+AssertJ fornece Assertions para objetos, arrays, caracteres, classes, files, double, float, integer, streams, maps, etc.
+
+
+
+### TDD e Testes Unitários com JUnit5
+## O que é TDD?
+Test Driven Development: Desenvolvimento Guiado por Testes
+Metodologia de desenvolvimento de softwares, baseado em testes, com ciclo curto de repetições.
+TDD possui um ciclo que pode ser dividido em cinco passos:
+- Escreva um teste
+- Falhe
+- Codifique
+- Passe no teste
+- Refatore
+
+Princípios: um código só deve ser implementado quando um teste falhar. O mínimo de código deve ser escrito para um teste passar. Quando todos os testes passarem, o ciclo deve ser repetido para uma nova funcionalidade.
+
+## Benefícios
+Usuários de TDD encontram vários benefícios:
+Escrever os testes antes de codificar permite obter códigos com muito menos defeitos e muito mais limpos que encontrados no mercado.
+Existe um feedback rápido, possibilitando detectar um bug no momento do desenvolvimento.
+
+## Primeiros passos
+Exige muito conceito.
+
+src > test > java > com.teste > New > Java Class > CalculadoraNovaTeste
+
+
+
+### Novidades do JUnit 5
+## Overview
+JUnit é o framework de testes unitários mais popular do Java. O JUnit5 possui uma série de inovações com objetivo de oferecer suporte a novos recursos do Java8. Também possibilita muitos estilos diferentes de testes.
+
+## Arquitetura
+É composto por vários módulos diferentes, de 3 subprojetos.
+- JUnit Platform: é responsável por lançamento de estruturas de testes na JVM. Faz a estrutura de testes executada na JUnit, pode-se conectar bibliotecas de testes ao JUnit.
+- JUnit Jupiter: é a combinação do novo modelo de programação e modelo de extensão para escrever testes no JUnit 5. SubProject Jupiter fornece uma test engine para executar testes baseados em Jupiter.
+- JUnit Vintage: fornece uma test engine para executar testes baseados em JUnit 3 e 4.
+
+## Annotations
+JUnit Jupiter suporta anotações para configurar testes e extender estruturas.
+
+## Asserts e Assumptions
+- É possível usar lambda em Asserts.
+- É possível agrupar Asserts em assertAll.
+- Assumptions é um recurso novo. É usado para realizar testes apenas se determinadas condições forem atendidas. Geralmente usada para condições externas necessárias para que os testes sejam executadas corretamente. Assumptions também aceitam lambda.

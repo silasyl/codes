@@ -1,0 +1,124 @@
+Command Line Interface (CLI)
+
+Windows:						Unix:
+Listar as pastas
+- dir 							- ls
+
+Mudar de pastas
+- cd 							- cd
+Pasta anterior
+- cd ..							- cd ..
+
+Criar pastas/arquivos
+- mkdir 						- mkdir
+
+Deletar pastas/arquivos
+- del (deleta apenas arquivos)
+- rmdir (deleta tudo)			- rm -rf
+- rmdir dir /S /Q
+
+Limpar a tela (clear screen)
+- cls							- clear (Ctrl+L)
+
+Imprimir algo na tela
+- echo Texto					- echo "Texto"
+
+sudo apt-get install git: instala pacote git no Ubuntu
+git --status: status do git
+git --version: mostra versão do git
+
+
+Funcionamento do Git:
+- SHA1
+A sigla SHA significa Secure Hash Algorithm (Algoritmo de Hash Seguro), é um conjunto de funções hash criptográficas projetadas pela NSA (Agência de Segurança Nacional dos EUA).
+A encriptação gera conjunto identificador único de caracteres de 40 dígitos.
+É uma forma curta de representar um arquivo.
+echo "ola mundo" | openssl sha1: encripta com sha1
+
+No Git Bash:
+openssl sha1 arquivo: encripta com sha1
+
+- Objetos fundamentais
+Objetos internos do Git:
+- Blobs
+Arquivos ficam guardados dentros dos Blobs, que contém metadados: tipo do objeto (Blob), tamanho do arquivo, \0 e o conteúdo.
+echo 'conteudo' | git hash-object --stdin: Chamada pelo git
+echo -e 'blob 9\0conteudo' | openssl sha1: Mesmo resultado
+
+- Trees
+Armazenam Blobs, com metadados:
+tipo do objeto (Tree), tamanho, \0, blob, sha1, nomedoarquivo
+
+- Commits
+tipo do objeto (Commit), tamanho, tree: sha1 tree, parente: sha1 parent, autor: perkles, mensagem: "inicia...", timestamp
+
+- Sistema distribuído
+- Segurança
+
+
+Comandos com GIT:
+git init: Inicializa o repositório GIT
+
+git add .: Iniciar o versionamento
+Adiciona o arquivo, indo de Untracked para Tracked (Staged)
+git add em um arquivo Modified, muda para Staged
+git add *: adiciona tudo para staged
+
+git commit: Criar um commit
+Retorna os arquivos de Staged para Unmodified
+git commit -m "mensagem"
+
+git status: Mostra o status
+git config --list: Mostra configurações do git
+git config --global --unset user.email: resetar email
+git config --global --unset user.nickname: resetar nickname
+git config --global user.email "email": seta o email
+git config --global user.nickname "nick": seta o nick
+git remote add origin https://github.com/silasyl/repositorio.git: aponta ao repositório remoto no github
+git remote -v: lista os repositórios remotos
+git push origin master: envia o repositório local para o remoto
+
+Conflitos no GitHub
+git pull origin master: puxa o repositório remoto e confere
+git clone url.git: clona o repositório de outra pessoa
+
+
+
+
+## Django secret key:
+https://stackoverflow.com/questions/15209978/where-to-store-secret-keys-django
+
+Terminal:
+pip install python-dotenv
+
+- Criar um arquivo .env na mesma raiz em que está manage.py
+
+Terminal:
+echo .env > .gitignore
+
+- Copiar SECRET_KEY no .env
+
+settings.py:
+import os
+import dotenv
+
+# Add .env variables anywhere before SECRET_KEY
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+# UPDATE secret key
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
+
+
+
+
+
+## Guia rápido
+git init: Inicializa o repositório GIT
+git add .: Iniciar o versionamento
+git commit -m "mensagem"
+	git status: Mostra o status
+git remote add origin https://github.com/silasyl/repository
+git push origin master: envia o repositório local para o remoto

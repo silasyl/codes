@@ -1,0 +1,619 @@
+### Vantagens e desenvolvimento de Web Services
+## Web Services
+- Serviços Web ou Web Services são soluções para aplicações se comunicarem independente de linguagem, software e hardwares utilizados.
+- Inicialmente Serviços Web foram criados para troca de mensagens utilizando a linguagem XML (Extensible Markup Language) sobre o protocolo HTTP sendo identificado por URI (Uniform Resource Identifier).
+- Podemos dizer que Serviços Web são APIs que se comunicam por meio de redes sobre o protocolo HTTP.
+
+## Vantagens
+- Linguagem comum
+- Integração
+- Reutilização de implementação
+- Segurança
+- Custos
+
+## Principais Tecnologias
+- SOAP
+- REST
+- XML
+- JSON
+
+
+## Estrutura SOAP
+# O que é SOAP
+- SOAP - Simple Object Access Protocol
+- É um protocolo baseado em XML para acessar serviços web principalmente por HTTP.
+- Pode-se dizer que SOAP é uma definição de como serviços web se comunicam.
+- Foi desenvolvido para facilitar integrações entre aplicações.
+
+# As vantagens de se utilizar SOAP
+- Permite integrações entre aplicações, independente de linguagem, pois usa como linguagem comum o XML.
+- É independente de plataforma e software.
+- Meio de transporte genérico, ou seja, pode ser usado por outros protocolos além do HTTP.
+
+# O que é XML
+- XML - Extensible Markup Language
+- É uma linguagem de marcação criada na década de 90 pela W3C
+- Facilita a separação de conteúdo
+- Não tem limitação de criação de tags
+- Linguagem comum para integrações entre aplicações
+
+# Estrutura SOAP
+- O "SOAP Message" possui uma estrutura única que deve sempre ser seguida.
+SOAP Envelope > SOAP Header
+			  > SOAP Body
+
+- SOAP Envelope é o primeiro elemento do documento e é usado para encapsular toda a mensagem SOAP.
+- SOAP Header é o elemento onde possui informações de atributos e metadados da requisição.
+- SOAP Body é o elemento que contém os detalhes da mensagem
+
+
+## Entendendo o que é WSDL e XSD
+# O que é um WSDL
+- WSDL - Web Services Description Language.
+- Usado para descrever Web Services, funciona como um contrato do serviço.
+- A descrição é feita em um documento XML, onde é descrito o serviço, especificações de acesso, operações e métodos.
+
+# O que é um XSD
+- XSD - XML Schema Definition
+- É um schema no formato XML usado para definir a estrutura de dados que será validada no XML.
+- O XSD funciona como uma documentação de como deve ser montado o SOAP Message (XML) que será enviado através de Web Service.
+
+# SOAP na prática
+WSDL:
+http://www.soapclient.com/xml/soapresponder.wsdl
+
+SaopUI: Ferramenta para auxiliar escrita de SWDL:
+http://soapui.org/
+
+SOAP > Initial SWDL: Copiar a URI > OK
+
+soapresponder > SoapResponderBinding > Method1 > Request 1:
+Monta a SOAP Message.
+
+
+## Aprenda o que são REST, API e JSON
+# O que é REST
+- REST - Representational State Transfer
+- É um estilo de arquitetura de software que define a implementação de um serviço web.
+- Podem trabalhar com os formatos XML, JSON ou outros.
+
+# Vantagens em se utilizar REST
+- Permite integrações entre aplicações e também entre cliente e servidor em páginas web e aplicações.
+- Utiliza dos métodos HTTP para definir a operação que está sendo efetuada.
+- Arquitetura de fácil compreensão.
+
+# O que é API
+- API - Application Programming Interface.
+- São conjuntos de rotinas documentados e disponibilizados por uma aplicação para que outras aplicações possam consumir suas funcionalidades.
+- Ficou popular com o aumento dos serviços web.
+- As maiores plataformas de tecnologia disponibilizam APIs para acessos de suas funcionalidades, algumas delas são: Facebook, Twitter, Telegram, Whatsapp, GitHub.
+
+# Principais Métodos HTTP
+- GET - Solicita a representação de um recurso.
+- POST - Solicita a criação de um recurso.
+- DELETE - Solicita a exclusão de um recurso.
+- PUT - Solicita a atualização de um recurso.
+
+# Estrutura de um REST
+# Estrutura de um JSON
+- JSON -JavaScript Object Notation.
+- Formatação leve utilizada para troca de mensagens entre sistemas.
+- Usa-se de uma estrutura de chave e valor e também de listas ordenadas.
+- Um dos formatos mais populares e mais utilizados para troca de mensagens entre sistemas.
+
+
+## Veja sobre integração com REST e métodos HTTP na prática
+# Integração com serviços REST
+
+
+# Código de estado HTTP
+- Usado pelo servidor para avisar o cliente sobre o estado da operação solicitada
+- 1xx - Informativo
+- 2xx - Sucesso
+- 3xx - Redirecionamento
+- 4xx - Erro do Cliente
+- 5xx - Erro do Servidor
+
+https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+Códigos de status
+
+# Métodos HTTP na prática
+Postman:
+GET
+
+PUT > Body > raw:
+{
+	"nome": "Rafael",
+	"idade": 31
+}
+
+DELETE
+
+POST > Body > raw:
+{
+	"nome": "Rafael",
+	"idade": 31
+}
+
+https://requests.readthedocs.io/en/master/
+https://developer.twitter.com/en/docs/api-reference-index
+
+
+
+### Conceitos de arquitetura em aplicações para Internet
+## Tipos de arquitetura
+- Monolito: Uma única aplicação, que tem acesso a diversos pontos de comunicação externos
+- Microserviços #1: Um serviço para cada operação. Um serviço pode chamar o outro.
+- Microserviços #2: Não há comunicação direta entre serviços. Uso do Message Broker.
+- Microserviços #3: Arquitetura estilo pipeline.
+
+## Comparando os modelos Monolito e Microserviços
+# Monolito
+- Pros:
+	- Baixa complexidade
+	- Monitoramento simplificado
+- Contra:
+	- Stack única
+	- Compartilhamento de recursos
+	- Acoplamento
+	- Mais complexo a escalabilidade
+
+# Microserviços #1:
+- Pros:
+	- Stack dinâmica
+	- Simples escalabilidade
+- Contra:
+	- Acoplamento
+	- Monitoramento mais complexo
+	- Provisionamento mais complexo
+
+# Microserviços #2:
+- Pros:
+	- Stack dinâmica
+	- Simples escalabilidade
+	- Desacoplamento
+- Contra:
+	- Monitoramento mais complexo
+	- Provisionamento mais complexo
+
+# Microserviços #3:
+- Pros:
+	- Stack dinâmica
+	- Simples escalabilidade
+	- Desacoplamento
+	- Menor complexidade
+- Contra:
+	- Provisionamento mais complexo
+	- Plataforma inteira depende do gerenciador de pipeline
+
+
+## Gerenciamento de erros e volume de acesso
+# Gerenciamento de erros
+Onde é mais complexo:
+- Processos assíncronos (Microsserviços #2)
+- Pipeline
+
+Solução:
+- Dead letter queue
+- Filas de re-tentativas
+
+https://github.com/jeffhsta/fundamentos_arquitetura
+
+
+
+### A arquitetura de aplicações móveis e internet das coisas
+## Conceitos da Internet das Coisas
+# Por que conectar as coisas?
+- Embutir sensores em objetos do dia-a-dia
+- Coletar dados dos sensores
+- Usar o dado para tomar decisão
+
+- Things
+- Cloud
+- Intelligence
+- Computação Ubíqua
+
+# Desafios da Internet das Coisas
+1- Privacidade e Segurança
+2- Quantidade exponencial de dispositivos conectadas na rede
+3- Ser capaz de processar e armazenar uma enorme quantidade de informações
+4- Gerar valor a partir dos dados coletados
+
+
+## Arquitetura da internet das coisas e protocolo de comunicação
+# Como conectar as coisas
+# Considere esses atributos na escolha:
+- Baixo consumo de energia
+- Rede de dados limitado
+- Resiliencia
+- Segurança
+- Customização
+- Baixo Custo
+
+# Arduino
+- Plataforma de Prototipagem
+- Com entradas/saídas
+- Desenvolvedor escreve em C/C++
+- Interface serial ou USB
+- Shields
+
+# Embarcados
+- MCUs
+	- Microcontrolador de chip único
+	- Sistema operacional real time
+	- Embarcado
+	- Uso industrial, médico, militar, transporte
+
+# Minicomputadores
+- Raspberry Pi
+	- Computador completo
+	- Hardware integrado em uma única placa
+	- Roda SO Linux ou Windows
+	- Uso doméstico e comercial
+
+# O protocolo MQTT
+- Smartphone -> android
+- Gps tracker -> free RTOS
+- MQTT -> Cloud
+
+# MQTT
+- Base na pilha do TCP/IP
+- Protocolo de mensagem assíncrona (M2M)
+- Criado pela IBM para conectar sensores de pipelines de petróleo a satélites
+- Padrão OASIS suportado pelas linguagens de programação mais populares
+
+# Modelo Cliente Servidor
+# Modelo Publish / Subscribe
+
+pub mqtt://my-tracker.com/d7k9a1/gps/position{'lat:-23.64644,'lon':-43.81035'}
+
+Endereço MQTT. Tópico contém informações como identificação do GPS (d7k9a1) e as informações lat e lon em formato JSON.
+
+
+## Flexibilidade dos tópicos e Cloud
+# A flexibilidade dos tópicos
+mqtt 	:// broker.io 	/ 	a6g3l9 	/ 		gps 	/ 	position
+PROTOCOLO 	BROKER 		USER IDENTIFIER 	SENSOR 	INFORMATION TYPE
+
+mqtt://broker/user/accelerometer
+mqtt://broker/user/gps/position
+mqtt://broker/user/gps/velocity
+
+# Subscribe
+sub mqtt://broker/user/gps/position
+
+mqtt://broker/user/gps/position
+mqtt://broker/user/gps/velocity
+mqtt://broker/user/accelerometer
+mqtt://broker/+/gps/position
+mqtt://broker/user/gps/+
+mqtt://broker/+/#
+
+# QoS 0
+MQTT Client -> Publish -> MQTT Broker
+- Nível mínimo de menor esforço
+- Sem garantia de entrega
+- Mensagem não é retransmitida
+
+# QoS 1
+MQTT Client -> Publish -> MQTT Broker
+MQTT Client <- Puback <- MQTT Broker
+- Garante que a mensagem foi entregue no mínimo uma vez ao recebedor
+- Mensagem pode ser retransmitida se não houver confirmação de entrega
+
+# QoS 2
+MQTT Client -> Publish -> MQTT Broker
+MQTT Client <- Pubrec <- MQTT Broker
+MQTT Client -> Pubrel -> MQTT Broker
+MQTT Client <- Pubcomp <- MQTT Broker
+- Garante que a mensagem foi entregue no mínimo uma vez ao recebedor
+- Mensagem pode ser retransmitida se não houver confirmação de entrega
+
+# Cloud
+- Grande e cada vez maior número de devices conectados
+- TBs ou PBs de informações
+- Potencial de escala global
+
+- Broker > Worker > Data store:
+Armazena cada posição geográfica recebida identificando usuário, data e hora permitindo reconstruir rotas inteiras.
+- Broker > Worker > Cache > Interface:
+Apresenta em tempo real a última posição de cada usuário no mapa e a quantidade de usuários por hora.
+
+
+## Estudo de caso
+# Arquitetura é escolha:
+GPS -> Broker (?) -> Worker (?) -> Data store (?)
+
+# Prova de conceito:
+App Android -> Eclipse Mosquitto -> Node.js -> Banco de Dados noSQL MySQL
+
+# Mínimo Produto Viável:
+GPS Embarcado -> HiveMQ -> Akka Scala JVM -> Banco de Dados noSQL mongoDB
+
+# Solução:
+GPS Embarcado -> AWS IoT Core -> AWS Kinesis Firehose -> AWS S3
+
+
+# IoT na prática:
+GPS -> Broker (?) -> Worker (?) -> Cache (?) -> Interface (?)
+
+GPS Embarcado -> AWS IoT Core -> AWS Data Stream -> AWS Lambda -> AWS ElasticCache Redis
+
+AWS ElasticCache Redis -> AWS EC2 -> FeatherJS Backend -> Dashboard
+
+
+
+### Arquitetura de dados essencial
+## Conceitos introdutórios e o que é um banco de dados
+# Modelo Sustentável
+- Estruturação
+- Durabilidade
+- Velocidade
+- Controle de Acesso
+- Isolamento
+
+# SGDBs
+- Linguagem de Definição
+- Linguagem de Manipulação
+- Dicionário de Dados
+
+# Modelo Flat
+# Modelo Hierárquico
+# Modelo Relacional
+# Outros Modelos
+- Redes Grapho
+- Orientado a Objetos
+- Objeto-Relacional
+- Big Data
+
+
+## Banco de dados relacionais
+# Normalização
+1a .. 5a- Formas normais
+1, 2 e 3a- Mais comuns
+
+
+## SGDBR - SQL
+- DDL - Data Definition Language
+- DML - Data Manipulation Language
+- DQL - Data Query Language
+
+# DDL
+Create Table Cliente
+(
+	Codigo number(10) Not Null Primary Key,
+	Nome varchar(50) Not Null,
+	Telefone varchar(15)
+)
+
+# DML
+Insert into Cliente (Codigo,Nome,Telefone)
+values (1,"Lorem ipsum","(88)999 9999")
+
+Delete from Cliente
+Where Codigo=1
+
+Update Cliente
+set Nome="Lorem Ipsum"
+Where Codigo=1
+
+# DQL
+Select Codigo,
+	Nome
+from Cliente
+<Where> Codigo = 1
+	<Group by> Profissao
+	<Having> Count(1)>0
+<Order by> Nome,Codigo
+
+# Query
+Select Codigo,
+	Nome
+from Cliente
+Where Codigo = 2
+	Union
+Select Codigo,
+	Nome
+from Cliente
+Where Nome = "Lorem Ipsum"
+
+Select Quantidade
+	,Valor
+	,Descricao
+from Item_venda
+JOIN Produto
+ON Codigo = Cod_Produto
+Where Valor > 5
+
+# Funções de Conjunto
+Select Sum(ven.Quantidade) as QTotal
+	,Sum(ven.Valor) as VTotal
+	,pro.Descricao
+from Item_venda ven
+JOIN Produto pro
+ON pro.Codigo = ven.Cod_Produto
+Where ven.Valor > 5
+Group by pro.Descricao
+Having Sum(ven.Valor) >= 10
+
+# Index
+Select ...
+Where Profissao = 1
+and Genero = "M"
+
+
+## Transactions
+Inicio:
+	Insert
+	Delete
+	Update
+Resolução:
+	Commit
+	Rollback
+Fim:
+	Novos dados ou dados originais
+
+# ACID - Transactions
+- Atomicidade: Todas operações executadas com sucesso. Commit ou Rollback.
+- Consistência: Unicidade de chaves, restrições de integridade lógica, etc.
+- Isolamento: Várias transações podem acessar simultaneamente o mesmo registro (ou parte do registro)
+- Durabilidade: Depois do Commit, mesmo com erros, queda de energia, etc. as alterações devem ser aplicadas.
+
+## SGDBR na prática
+- Oracle
+- Microsoft SQL Server
+- IBM DB2
+- PostgreSQL
+- MySQL
+- SQLite
+
+## Criando banco de dados
+
+
+
+### Conceitos de responsividade e experiência do usuário
+## Tópicos introdutórios sobre UX e UI
+# Briefing, Imersão e Unpack
+- Um grande projeto começa sempre com um briefing bem feito. É no briefing que se entende o objetivo de um projeto, e o objetivo é fundamental para entender o porquê daquele trabalho, e se a solução inicialmente imaginada irá gerar o resultado desejado.
+- Através da imersão, procuramos conhecer o problema,
+- o contexto, o público, os stakeholders, as premissas,
+- as regras de negócio, o histórico, a estratégia,
+- as demandas, as reclamações, etc.
+
+- A imersão é a base de conhecimento necessária para que se comece a delinear uma solução.
+- Geralmente em uns Sprint Design, o primeiro dia é conhecido como "Unpack" e é nessa etapa que podemos ouvir várias informações diferentes, e é fundamental para o sucesso do projeto.
+Desenvolvedores sabem de coisas que os designers não sabem, os stakeholders sabem de coisas que os product managers não sabem - e assim por diante.
+Isso literalmente abre todas as hipóteses possíveis para o projeto.
+
+# Wireframes, Grids e Hierarquia
+- Estrutura - Como os objetos devem ser posicionados no layout?
+- Conteúdo - Como serão colocados os conteúdos para ajudar na usabilidade e interatividade do usuário?
+- Hierarquia informativa - Como o conteúdo será organizado e apresentado?
+- Funcionalidade - Como será a usabilidade em cima da interface? Em relação ao Comportamento, como interagir com o usuário? E como ele se comporta?
+
+# Grids, Alinhamento e Espaçamento
+- Grid - Podemos mais facilmente determinar o fluxo de leitura que queremos o nosso leitor tenha.
+Nos ajuda a projetar em proporções harmoniosas balanceando os pesos dos elementos gráficos do layout. Permite criar peças mais eficazes.
+(Lembre-se sempre de dar atenção ao espaçamento e alinhamento tanto de textos quanto de elementos da sua interface, focando sempre na responsividade desses elementos.)
+
+# Luzes, Sombras, Consistência e Padrão
+- Luzes e Sombras - As luzes e sombras são os recursos que garantem movimento, profundidade, sobreposição e contraste em sua interface. É importante para separar elementos, menus, demarcar areas importantes e principalmente indicar ações possíveis em seu projeto.
+- Consistência e padrão - Lembre-se que o seu projeto deve manter o mesmo tom de redação (UX Writer), o mesmo padrão visual (Design System) e a mesma consistência em diversos devices (UX Design).
+
+
+## Cores da interface
+# Cores
+Saber usar as cores em um projeto não é uma tarefa fácil, principalmente quando se está iniciando na área de UI Design. Uma dica importante é conhecer um pouco sobre a psicologia das cores para entregar algo factível ao cliente. Aqui vamos falar sobre algumas regras e teorias que poderão te ajudar a iniciar e não fazer feio diante de um cliente.
+
+# Cores - UI Primárias
+- Paleta Primária - Estas são as cores mais importantes de todo o sistema. A paleta primária é composta pelas cores principais da marca, tons de cinza e, geralmente, o azul flat.
+Azul Primário, Laranja Primário, Cinza Primário
+
+- Paleta Secundária - Além das cores primárias, suas variações, e tons de cinza, todo designer de interfaces precisa, também, escolher as cores que já têm, por padrão, um significado próprio. Por exemplo, a cor vermelha é comumente associada a erro, o verde a sucesso e o amarelo a avisos importantes. Essas cores, chamadas "Cores de Feedback" são essenciais dentro de um interface porque já trazem um significado implícito que já faz parte da cultura do usuário.
+
+# Cores - Gradiente
+- Gradiente ou Degradê - A volta do uso do gradiente em 2017, trouxe mais elegância para as interfaces vem sendo aplicada em diversas formas, como no redesign de logos como do Instagram, por exemplo e de maneira muito forte nas UI (User Interface) tanto Web como Mobile.
+Além do maior impacto visual, estimulando o usuário, o degradê proporciona sensações de dinamismo e movimento, visto que as interfaces precisam ser amigáveis e intuitivas o uso das cores pode ser vista como tentativa de aproximação e melhoria na experiência do usuário.
+
+
+## Tipografias
+# Tipografia - Qual escolher?
+Escolher uma tipografia é como escolher uma roupa, pense no que as roupas podem dizer sobre você: com base no que você veste, as pessoas podem criar conceitos certeiros ou equivocados sobre seu estilo, sua personalidade, situação econômica, idade ou impressão que quer causar.
+
+# Tipos de Fonte
+Para simplificar aqui, vamos focar em 4 categorias básicas que serão úteis para entender melhor do assunto e te deixar mais seguro para escolher fontes para projetos, e discutir suas escolhas com outras pessoas.
+- Serifadas: Fontes serifadas apresentam pequenos traços ou prolongamentos no final de suas letras. Elas geralmente representam os conceitos de seriedade e tradicionalidade.
+- Sem Serifa (sans-serif): Estas fontes não têm as linhas extras no final das letras. Por esse motivo, são geralmente consideradas mais modernas e dinâmicas.
+- Cursivas (script): Abrange as fontes manuscritas ou caligráficas passando por vários estilos diferentes, de elegante, pessoal e exclusivo a divertido e descontraído. 
+- Decorativas ou fantasia (display): Fontes destinadas a chamarem sua atenção. Elas geralmente são mais inusitadas do que práticas e devem ser usadas em pequenas doses, para efeito e propósito específicos.
+
+# Tamanho e peso
+Se você fez trabalhos para escola ou faculdade provavelmente se lembra daquelas regrinhas da ABNT para diagramação de texto como tipo Times New Roman, tamanho 12, espaçamento entrelinha 1.5. E isto é bom. Para um papel. O computador não é um papel.
+O tamanho padrão de texto de um browser é 16px. Quando lemos um livro ou um trabalho acadêmico seguramos o papel a uma distância bem próxima dos olhos. Quando mexemos em um computador desktop ou netbook a distância em relação a tela é muito maior.
+Por isto é necessário que o texto esteja em um tamanho confortável em relação a esta distância.
+
+- Peso - O peso é a grossura dos caracteres de um tipo. Este atributo é definido pela propriedade font-weight. Pode ser normal, bold (negrito), bolder (mais negrito) e lighter (mais fino). Ou ainda, se estas opções estiverem disponíveis na fonte que você escolheu, variar entre um valor numérico de 100 a 900.
+Sendo a correspondência:
+100 - Thin
+200 - Extra Light (Ultra Light)
+300 - Light
+400 - Normal
+500 - Medium
+600 - Semi Bold (Demi Bold)
+700 - Bold
+800 - Extra Bold (Ultra Bold)
+900 - Black (Heavy)
+
+
+## Componentes da Interface do Usuário
+# Iconografia
+A palavra ícone vem do Grego "eikon" e significa imagem. Muito antes do surgimento do design de experiência, os ícones já eram usados como ferramenta de comunicação. Seu objetivo era comunicar eficientemente uma mensagem através de uma linguagem visual comumente compreendida.
+Os primeiros ícones eram imagens de objetos com os quais os usuários estavam familiarizados, como objetos de escritório e programas de software.
+
+# Como utilizar os ícones na UI
+- Mantenha os ícones simples - Simplifique o máximo possível e evite elementos desnecessários. Eles devem traduzir de forma simples a informação que precisam passar no ambiente em que serão usados.
+- Combine os ícones com palavras - As pessoas processam mais rapidamente recursos visuais do que textos, especialmente quando já conhecem os significados desses símbolos. As palavras esclarecem a mensagem de um ícone e dão às pessoas confiança nos resultados de suas interações. Mesmo para ícones universais, uncluir um texto é geralmente mais seguro.
+
+# Como utilizar os ícones
+- Escolha ícones familiares - A compreensão de um ícone pelo usuário é baseada em suas experiências anteriores. Ao decidir incluir ícones na sua interface, pesquise primeiro e se familiarize com o que está sendo usado em plataformas do mesmo segmento.
+- Utilize espaçamento - Tenha sempre pelo menos 1 cm x 1 cm no mínimo em torno do ícone para legibilidade e fácil toque em celulares. Quando grandes o suficiente, os ícones funcionam bem em telas mobile onde o espaço é limitado.
+
+- Consistência - Concentre-se em elementos comuns para usar em seus ícones. A primeira coisa a considerar é a paleta de cores. Não mais do que três cores para manter o design clean. Não tenha medo de repetir elementos em todos os seus ícones. Repetição ajuda os usuários a identificar ícones e associá-los a uma ação. O peso e estilo do ícone também são decisivos na hora de manter a consistência.
+
+# Utilizando imagens
+Como diz o ditado, uma imagem vale mais que mil palavras.
+As imagens podem ser usadas de maneira eficiente para capturar a atenção do usuário e diferenciar seu produto. Uma única imagem pode transmitir mais para o observador do que um bloco de texto elaborado. Além disso, as imagens podem atravessar as barreiras linguísticas, algo que um texto não conseguiria.
+Imagem NÃO pode ser tratada como "decoração", ela tem o poder de fazer ou quebrar a experiência do usuário (UX).
+
+- Contexto relevante - Os usuários reagem ao visual mais rápido do que um texto, com isso em mente certifique-se de que o seu conteúdo coincide com os recursos visuais de apoio. Você deve selecionar as imagens que tem uma forte relação com o seu produto e criar um contexto relevante.
+
+- Relevância - O objetivo do seu site/aplicativo não é exibir imagens, mas as imagens podem mostrar o propósito do seu produto. Use um número limitado de recursos visuais no design mas use aquela que realmente vai capturar a atenção do usuário.
+
+# Guias de Estilo - Manuais
+- Manual da marca - Criado pelo designer, ou uma equipe de designers, que criaram a identidade visual, ele determina a correta aplicação da marca em diferentes suportes (gráfico, web, etc).
+É um guia que contém todas as informações da marca, fornecendo todas as especificações, recomendações e normas fundamentais para a correta utilização da identidade visual.
+O objetivo é preservar a uniformidade e coerência de comunicação da marca, mantendo suas propriedades visuais, identificação e reconhecimento da marca independentemente da plataforma em que ela for aplicada.
+
+
+## Como aplicar os conceitos em projetos
+# Responsividade
+A tecnologia mudou o mundo e continua o fazendo constantemente. A internet e o altíssimo nível de desenvolvimento de tecnologias disponíveis, transformaram o nosso modo de acessar informações e de nos relacionar com o mundo.
+O Brasil é um dos países que mais cresce em todo o mundo quando o assunto é uso de smartphones e, segundo estudo publicado pela Fundação Getúlio Vargas (FGV), alcançou a marca de um smartphone por habitante em 2017.
+
+Falando de comportamento de consumo, já está comprovado que o futuro do e-commerce terá como principal responsável o crescimento das compras feitas através de celulares - que já até ganhou um nome, o m-commerce (mobile-commerce).
+Portanto, é importantíssimo para qualquer empresa que tenha como foco oferecer para seu consumidor mais facilidade e conforto no momento da experiência de compra, ter um site adaptado para a tela de seu celular ou para qualquer outra tela que ele deseje utilizar - como é o caso dos tablets. Isso é responsividade!
+
+Através da responsividade de um site, que deve levar em conta a usabilidade - ou seja, ter um site realmente adaptado para que as pessoas consigam acessar e navegar nele com tranqulidade usando apenas uma mão, uma empresa pode oferecer para seu cliente:
+- Facilidade e Conforto de acesso
+- Boa Experiência de uso
+- Satisfação ao usuário
+- Fidelização do usuário
+
+Ferramentas importantes: Google Resize / Windows resize
+
+# Acessibilidade
+- Empatia e Inclusão - Quando falamos em desenvolver um produto, o foco principal durante o desenvolvimento dele são seus usuários, as pessoas que vão utilizar o sistema com mais frequência. Por esse motivo, fazemos pesquisas com essas pessoas para saber suas dificuldades e receios com relação a tarefa que vai ser executada utilizando o produto. Nessas pesquisas, procuramos entender as tarefas feitas por elas nos colocando em seus lugares e por isso que a empatia é tão importante.
+
+Compreender a acessibilidade significa que podemos construir serviços que funcionam para todos, independentemente da necessidade de seu acesso. Todo projeto exige uma pesquisa para que se conheça o usuário, é importante saber para quem se está projetando, se os usuários possuem, por exemplo, transtorno do espectro autista, se são usuários deficientes auditivos ou surdos, com dislexia, com baixa visão, deficiência física, para usuários de leitores de tela, dentre outros.
+
+Dica: uxdesign.blog.br - "O que fazer" e "o que não fazer" áo projetar para Acessibilidade
+
+# Prototipagem
+- Utilidade - A Prototipagem é útil, por exemplo, quando é necessário melhorar a experiência dos usuários (UX), atualizar modelos de negócios e criar novos produtos ou serviços. Em um projeto de longa duração, pode ser refeita ao longo do processo. Depois dos testes, é possível que seja necessário reenquadrar os protótipos e retestá-los.
+
+- Fidelidade do protótipo - Um protótipo pode ser desde uma representação conceitual ou análoga da solução (baixa fidelidade), passando por aspectos da ideia, até a construção de algo o mais próximo possível da solução final (alta fidelidade).
+
+# Portfolio, Clientes e Apresentação
+- O protfólio é uma das principais ferramentas de qualquer profissional liberal. É através dele que podemos mostrar o nosso trabalho a um potencial empregador ou cliente. Além disso, ter um portfólio pode ajudar a passar uma imagem mais profissional.
+Lembre-se de inserir em seus cases do portfólio, o desafio trazido pelo cliente, a solução sugerida a ele e também como você chegou a essa solução, além de é claro, do projeto finalizado.
+- Uma boa apresentação garante novos clientes e demonstra seu profissionalismo.
+
+
+## Bibliografia complementar e dicas do especialista
+- Medium: ui-lab-school/ux-strategy
+- https://www.ideo.com
+- https://material.io
+- Youtube: UX Lab/UX Now
+- Livros:
+	- Não me faça pensar: uma abordagem de senso comum para a usabilidade na Web
+	- Arquitetura da informação para a World Wide Web: projetando sites da Web em grande escala

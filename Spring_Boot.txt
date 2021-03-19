@@ -1,0 +1,352 @@
+### Introdução ao framework Spring Boot
+
+## Problemas do Spring
+- Configurações de beans em arquivos xml.
+- Dispatcher Servlet e view resolver em web.xml.
+- Setup manual de Banco de Dados.
+- Muito tempo gasto em configuração.
+- Perda de foco em valor.
+
+## O que é o Spring Boot?
+- Criado pela Spring Source em 2012.
+- Facilita setup de projetos Spring.
+- Sem necessidade de criar arquivos de configuração.
+- Foco em produtividade.
+- Maior tempo no desenvolvimento de valor.
+
+## Quais problemas resolve?
+- Produtividade: setup simplificado de projeto
+- Starters: dependências auto configuráveis pelo Spring Boot
+- Execução simplificada: sem deploy em servidor externo.
+- Configuração: arquivo externo para configuração.
+- Valor: maior tempo em desenvolvimento.
+
+## Exercício
+# Criação de um projeto no site http://start.spring.io
+- Project: Maven
+- Language: Java
+- Spring Boot: 2.4.2
+- Group: com.innovation.one
+- Artifact: springboot
+- Dependencies: Spring Web
+
+# Importar o projeto na sua IDE favorita.
+IntelliJ IDEA:
+File > Open > Diretório descompactado > Abrir
+
+SpringBoot > src > main > resources > application.properties
+application.properties: onde adicionamos todas as dependências de configuração do projeto, como informações de banco de dados, portas para rodar no servidor, habilitar/desabilitar logs, etc.
+
+SpringBoot > src > main > java > SpringbootApplication
+SpringbootApplication: Arquivo principal do Spring Boot, é uma classe como main.
+
+# Adicionar spring-boot-starter-mvc no pom.xml
+# Adicionar classe HelloController e o método hello()
+@RestController: anotação do spring para web, identificando o controller como rest (retorna apenas texto)
+
+@GetMapping: Para ser possível retornar a mensagem através do browser, é preciso mapear no get, com valor padrão /
+
+# Executar o projeto através do terminal
+Pasta raiz do projeto:
+mvn spring-boot:run
+
+No IntelliJ:
+- Criando o spring boot:
+Lifecycle: install
+- Rodando o spring boot:
+Plugins: spring-boot: run
+
+No browser:
+http://localhost:8080
+
+
+### Auto Configuration
+## Configuração manual
+- Múltiplos Arquivos XML.
+- Configuração manual do Spring MVC: Dispatcher Servlet, web.xml, spring-mvc.xml.
+- Configuração manual dos beans Spring.
+- Aplicado também ao Spring Data, Spring Security, etc.
+
+## Auto configuration
+- Starters: dependências simplificadas e auto configuráveis.
+- Identificação e configuração automática da dependência.
+- Spring Boot detecta as dependências e configura para nós.
+- Projeto simplificado e pronto para foco no valor.
+
+## Exercício
+# Adicionar propriedade debug=true no application.properties.
+SpringBoot > src > main > resources > application.properties
+application.properties:
+debug:true
+
+# Executar projeto no terminal e analisar o log.
+DispatcherServletAutoConfiguration.DispatcherServletConfiguration#multipartResolver:
+
+Detecta o DispatcherServlet em 2 configurações: do DispatcherServlet e do WebMvcAutoConfiguration.
+
+WebMvcAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+@ConditionalOnClass: automaticamente já acha o DispatcherServlet por, a auto configuration achar a dependência para nós do string web dentro do projeto, já detecta a classe e instancia essas configurações.
+
+External Libraries > Maven: org.springframework.boot:spring-boot-autoconfigure:2.4.2 > sprint-boot-autoconfigure-2.4.2.jar > org.springframework.boot.autoconfigure > web > servlet > WebMvcAutoConfiguration
+
+package org.springframework.boot.autoconfigure.web.servlet;
+
+@Configuration
+@ConditionalOnClass
+Toda classe de auto configuração possui a anotação @Configuration, para indicar que o container do spring é uma configuração e possui @ConditionalOnClass, indicando que, se ao nível de classe houver todas as outras classes, haverá a auto configuração do Spring (no caso Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class).
+
+# Identificar e visualizar o auto configuration do spring mvc.
+pom.xml:
+spring-boot-starter-web (Ctrl+B)
+spring-boot-starter-web-2.4.2.pom
+Agrupador de dependências. Adiciona o arquivo do tomcat, a biblioteca do hibernate-validator, spring-web, spring-webmvc
+
+spring-boot-starter:
+spring-boot-starter-2.4.2.pom
+Automaticamente o autoconfigure, a dependência que vai detectar automaticamente as classes da dependência.
+
+# Visualizar a dependência do auto configuration do projeto.
+
+
+### FatJar / UberJar
+## Antes do Spring Boot
+- Spring tradicional: war precisa de servidor de aplicação.
+- Dependência de um container web ou servidor de aplicação.
+- Complexidade para configurações.
+- Atualizações frequentes, junto com versão do projeto.
+- Gerenciamento manual de configurações.
+
+## FatJar / UberJar
+- Artefato do projeto pronto para execução.
+- Container web embutido na geração e execução (Tomcat).
+- Deploy embarcado com outros containers são opcionais.
+- Dependências principais do projeto embarcado.
+- Execução direta através de um único java -jar.
+- Podemos também gerar o war tradicional.
+
+## Exercício:
+# Fazer o build do projeto.
+Terminal:
+mvn clean package
+IntelliJ:
+Lifecycle > Install
+Todo o conteúdo é gerado na pasta target, junto com o arquivo .jar
+
+# Explorar conteúdo do arquivo .jar gerado.
+
+# Executar o projeto no terminal com java -jar.
+Terminal:
+java -jar springboot-0.0.1-SNAPSHOT.jar
+IntelliJ:
+Plugin > spring-boot > run
+
+jar tf springboot.jar
+Listagem de todo o conteúdo do arquivo jar.
+Possui todas as dependências do Spring Boot empacotadas.
+Classes compiladas, libs e dependências necessárias.
+
+# Trocar o formato do artefato para .war e exectuar no Tomcat.
+IntelliJ:
+pom.xml:
+<packaging>war</packaging>
+Logo antes de <properties> da versão do Java
+
+mvn clean package
+
+Na raiz do projeto:
+mv target/springboot.war apache-tomcat-9.0.26/webapps
+(Pasta apache não achado no Windows)
+
+cd apache-tomcat-9.0.26
+cd bin/
+./startup.sh
+
+browser: http://localhost:8080/springboot/
+
+
+### Profiles e Configurações
+## Importância dos Profiles
+# Múltiplos ambientes
+- Ambientes para desenvolvimento, teste e produção.
+- Bancos de dados para cada ambiente.
+- Execução de testes unitários em ambiente local.
+- Suíte de testes completas em ambiente de testes.
+- Simulação do ambiente real em staging.
+- Deploy simplificado em produção.
+
+# Spring Boot Profiles
+- Configurações próprias para cada ambiente.
+- Ambientes com sua configuração: dev, production.
+
+## Configurações com Properties
+- Criamos uma classe DBConfiguration com a anotação @Configuration, indicando que é um arquivo de configuração. Usamos @ConfigurationProperties para facilitar o mapeamento de propriedades, declarando os nomes das outras classes (mapeamento automático das configurações). Profile a nível de método, criamos métodos para exibir todas as conexões de bancos de dados: @Profile("dev") e @Profile("prod").
+
+## Exercício:
+# Projeto com spring.initalzr e importar na IDE.
+http://start.spring.io/
+Gerar arquivo > descompactar
+
+# Arquivos application.properties para dev e prod.
+
+IntelliJ > Open > Diretório
+SpringBootConfig > src > main > resources
+New > File > application-dev.properties
+application-dev.properties:
+
+#DEV environment
+
+app.message=This is the property file to the ${spring.application.name} 
+
+spring.datasource.drive-class-name=org.h2.Driver
+spring.datasource.url=jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+spring.datasource.username=sa
+spring.datasource.password=sa
+
+Copiar o mesmo arquivo e renomear para produção:
+application-prod.properties:
+
+#PROD environment
+
+app.message=This is the property file to the ${spring.application.name} 
+
+spring.datasource.drive-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=<MYSQL_URL>
+spring.datasource.username=<USERNAME>
+spring.datasource.password=<PASSWORD>
+
+# Classe de configuração de DB e anotar com @Configuration.
+# Mapear propriedades com @ConfigurationProperties.
+# Criar métodos para instanciar Beans de cada env.
+
+Arquivo para fazer o mapeamento das configurações:
+SpringBootConfig > src > main > java > com.digitalinnovation.one.springbootconfig
+New > Package > com.digitalinnovation.one.springbootconfig.config
+
+config > New > Java Class > DBConfiguration
+
+DBConfiguration:
+@Configuration
+@ConfigurationProperties("spring.datasource")
+
+Declarar as propriedades
+Declarar os métodos de mapeamento
+
+Inserir biblioteca Lombok:
+pom.xml
+Adicionar depois de spring-boot-starter-test:
+
+<dependency>
+	<groupId>org.projectlombok</groupId>
+	<artifactId>lombok</artifactId>
+	<version>1.16.16</version>
+	<scope>provided</scope>
+</dependency>
+
+DBConfiguration:
+@Getter
+@Setter
+Com essas duas anotações, com a compilação do projeto, todas as propriedades do arquivo irão receber automaticamente seus Getters e Setters.
+
+application.properties:
+
+spring.application.name=Spring Boot Configuration Project
+
+# Criar classe anotada com @RestController.
+SpringBootConfig > src > main > java> com.digitalinnovation.one.springbootconfig
+New > Java Class > AppController
+
+AppController:
+@RestController
+A classe retorna appMessage no browser
+
+# Injetar propriedade appMessage com @Value.
+# Criar método que retorna a mensagem acima.
+Indicar qual dos 2 profiles a aplicação vai subir por padrão.
+
+application.profiles:
+
+spring.profiles.active=dev
+
+Terminal:
+mvn spring-boot:run
+
+# Executar projeto no browser.
+http://localhost:8080
+
+
+## Configurações com YAML
+- Troca no formato de configurações: formato .YML.
+
+## Exercício:
+# Migrar app.properties do profile dev para YML.
+application-dev.properties > Refactor > Rename
+application-dev.yml
+
+mvn spring-boot:run
+
+# Executar o projeto pelo terminal.
+
+
+## Configurações com command line
+- Propriedades do arquivo de configuração na linha de comando.
+- Sobrescreve as propriedades definidas no arquivo de configurações padrão.
+- Valores passados como argumento na execução do projeto.
+
+mvn spring-boot:run -Dserver.port=8085
+// Muda a porta para 8085
+
+## Exercício:
+# Passar como argumento a propriedade server.port = 8085.
+application-prod.properties:
+server.port=8080
+
+Terminal:
+mvn spring-boot:run -Dserver.port=8085
+
+# Executar o projeto no terminal com o argumento.
+# Abrir o browser no endereço http://localhost:8085.
+
+
+## Configurações com variáveis de ambiente
+- Variável de ambiente pode ser injetada através da anotação @Value no projeto
+- Lunix e Mac: export comum de variável
+- Windows: padrão de variável de ambiente
+- Injeção com anotalçao @Value({NOME_VARIAVEL})
+- Definição de valor default quando não há variável
+
+## Exercícios:
+# Injetar a variável com @Value em AppController.
+AppController.java:
+@Value("${ENV_DB_URL:NENHUMA}")
+private String dbEnvironmentVariable;
+
+# Definição de valor default junto com a anotação @Value.
+
+# Criar método para chamada do novo método e exibir o valor.
+
+AppController.java:
+
+// Mapear uma variável de ambiente
+@Value("${ENV_DB_URL:NENHUMA}")
+private String dbEnvironmentVariable;
+
+@GetMapping("/envVariable")
+public String getDbEnvironmentVariable() {
+    return "A seguinte variável de ambiente foi passada: " + dbEnvironmentVariable;
+
+# Executar projeto no terminal e exibir no browser.
+Terminal:
+mvn spring-boot:run
+
+Browser:
+http://localhost:8080/envVariable
+
+Terminal:
+// Exportar o endereço
+export ENV_DB_URL=jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+
+mvn sprint-boot:run
+
+Browser:
+http://localhost:8080/envVariable

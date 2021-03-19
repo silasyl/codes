@@ -1,0 +1,77 @@
+Implementando Collections e Stream com Java
+
+### Collections - Entendendo as coleções
+- Arrays: Estruturas estáticas, uma vez criadas não se pode adicionar ou remover de forma dinâmica posições ou valores
+- Java Collections API: Foi criada para facilitar o uso de arrays, com uma série de funcionalidades
+- java.util.Collection: é a interface principal da API de Collections. Funcionalidades básicas de arrays e outros
+
+## List (java.util.List)
+- Implementações que aprenderemos
+	java.util.ArrayList
+	java.util.Vector
+- Garante ordem de inserção
+- Permite adição, atualização, leitura e remoção sem regras adicionais
+- Permite ordenação através de comparators
+
+
+## Queue (java.util.Queue)
+- Implementações que aprenderemos
+	java.util.LinkedList
+- Garante ordem de inserção
+- Permite adição, leitura e remoção considerando a regra básica de uma fila: Primeiro que entra, primeiro que sai.
+
+
+## Set (java.util.Set)
+- Implementações que aprenderemos
+	java.util.HashSet
+	java.util.TreeSet
+	java.util.LinkedHashSet
+- Por padrão, não garante ordem
+- Não permite itens repetidos
+- Permite adição e remoção normalmente. Não possui busca por item e atualização. Para leitura, apenas navegação.
+- Não permite mudança de ordenação.
+- O HashSet é boa para lidar com um conjunto grande de dados e performance, não importando a ordenação destes.
+
+
+## Map (java.util.Map)
+- implementações que aprenderemos
+	java.util.HashMap
+	java.util.TreeMap
+	java.util.HashTable
+- Entrada de chave e valor
+- Permite valores repetidos, mas não permite repetição de chave
+- Permite adição, busca por chave ou valor, atualização, remoção e navegação
+- Pode ser ordenado
+Não extende de util.Collection
+Mais utilizada para correlacionar valores, de, para, atribuindo valores a chaves.
+TreeMap é usado quando você não está interessado na performance, mas na ordenação, de uma árvore.
+HashTable é utilizado em ambientes onde há concorrência de trads, possui métodos que pode ser lido, compartilha suas trads. Não é mais tão utilizado.
+
+
+## Comparators
+- interfaces que aprenderemos
+	java.util.Comparator - Interface para definir classe com regra de ordenação
+	java.util.Comparable - Interface para definir regra de ordenação em uma classe de domínio
+- Algoritmos de ordenação
+- Utilizado primariamente em java.util.List
+- Permite a ordenação de objetos complexos (criados pelo usuário)
+
+
+## Optional
+- Tratamento para valores que podem ser nulos
+- Possui 2 estados
+	Presente
+	Vazio
+- Permite que você execute operações em valores que podem ser nulos sem preocupação com as famosas NullPointerExceptions
+
+
+## Stream API - Fluxo de dados
+- Manipulação de coleções com o paradigma funcional de forma paralela
+- Imutável - não altera a coleção origem, sempre cria uma nova coleção
+- Principais funcionalidades
+	- Mapping: Retorna uma coleção com mesmo tamanho da origem com os elementos alterados
+	- Filtering: Retorna uma coleção igual ou menor que a coleção origem com os elementos intactos
+	- ForEach: Executa uma determinada lógica para cada elemento, retornando nada
+	- Peek: Executa uma determinada lógica para cada elemento, retornando a própria coleção
+	- Counting: Retorna um inteiro que representa a contagem de elementos
+	- Grouping: Retorna uma coleção agrupada de acordo com a regra definida

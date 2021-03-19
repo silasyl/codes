@@ -1,0 +1,224 @@
+### Conceitos de integração de sistemas e mensageria
+## O que é arquitetura em mensageria
+# Pros
+- Desacoplamento
+- Fácil plug & play
+- Comunicação assíncrona
+- Simples escalabilidade
+- Broadcasting
+- Permite Event Source
+
+# Contras
+- Single point of failure
+- Difícil monitoramento
+
+
+## Comunicação assíncrona entre serviços
+
+## Gerenciando erros em uma arquitetura assíncrona
+- Dead letter queue (Filas de re-tentativas)
+- Monitoramento entre serviços
+- Rastreamento de fluxo
+
+# Inconsistência de dados
+
+# Rastreamento de fluxo
+
+
+### Arquitetura de dados não estruturados e business intelligence
+## Business Intelligence em Modelos de Dados
+O BI é composto basicamente por:
+Ferramentas,
+Infraestrutura,
+Profissionais (corpo técnico),
+Dados.
+
+# BI - Data
+
+# BI - Solution
+- Infraestrutura
+- Gerenciamentos dos dados
+- Analytics
+- Compartilhamento
+- Ferramentas gerais
+
+# BI - Ferramentas
+
+
+## Data Warehouse
+# OLTP x OLAP
+On-Line Transaction Processing
+On-Line Analytical Processing
+
+
+## Big Data e dados não estruturados
+Big data é um termo que descreve o grande volume de dados - tanto estruturados quanto não estruturados
+
+# Dados Estruturados
+# Dados Semi-estruturados
+- XML, RDF, OWL, JSON
+- NoSQL / Not Only SQL
+	- Key-Value Store
+	- Wide Column Store
+	- Document Store
+	- Graph Store
+	- Apache HBase, riak, cassandra, CouchDB, redis, mongoDB
+
+# Dados Não Estruturados
+- Ferramentas: hadoop, Apache Spark, presto, HDFS, ceph, Apache Storm, DataTorrent, Google BigQuery
+
+## Data Lake vs Big Data
+
+## MongoDB
+https://www.mongodb.com/
+
+use loja
+db.produtos.insert({codigo:"01",descricao:"caneta"})
+show databases
+db.produtos.find()
+
+
+
+### Fundamentos de arquitetura de aplicações em nuvem
+## Cloud Computing
+- Gerenciamento de hardware/software
+- Provedores de servidor e armazenamento
+- Pague o que consumir
+- Iaas/Paas/Baas
+
+# Iaas
+- Infrastructure as a service
+- Google Cloud, amazon web services, Microsoft Azure
+
+# Paas
+- Platform as a service
+- Google Cloud, amazon web services, Microsoft Azure
+- Terraform, CloudFormation
+
+# Baas
+- Backend as a service
+- Mobile backend as a service
+- Firebase
+
+
+## Disponibilidade de aplicações
+- Iaas - hardware e internet
+- Paas - auto scale on the go
+- Baas - não há backend service
+
+- Kubernets (K8S)
+- Multiplos nodos
+- Load balancer
+
+
+## Serveless
+- Sem servidor
+- Sem serviço "rodando"
+- Sem down time
+- API Gateway, Amazon Kinesis, AWS Lambda, Amazon S3
+
+
+
+### Desenvolvimento e operação de software integrado
+## DevOps - Conceito e Práticas
+- Development
+- Quality Assurance (QA)
+- IT Operations
+
+"DevOps" é um termo criado para definir o conjunto de práticas que integram e automatizam os processos entre as equipes de desenvolvimento, operações e de apoio (como QA) para a produção rápida e confiável de software."
+
+"O conceito do DevOps baseia-se em criar uma cultura de colaboração entre as equipes que sempre trabalharam separadas.
+DevOps é uma mudança de mentalidade, uma cultura, um movimento, uma filosofia"
+
+## Framework CALMS
+- Culture
+- Automation
+- Lean
+- Measurement
+- Sharing
+
+# Culture
+Todas ferramentas e automações são inúteis se não forem acompanhadas pela verdadeira disposição da área de desenvolvimento e operações em trabalhar juntos.
+Porque DevOps não resolve problemas de ferramentas.
+Resolve problemas humanos.
+
+# Automation
+Automação elimina o trabalho manual repetitivo, produz processos repetíveis e cria sistemas confiáveis. Automatizar gera velocidade na entrega e tornam os envolvidos mais produtivos.
+Normalmente, compilação, teste, implementação e provisionamento automatizados são o ponto de partida típico para equipes que ainda não têm isso implantado.
+
+# Lean
+Precisamos focar nas entregas de valor ao cliente.
+Precisamos ser objetivos e enxutos. Precisamos conhecer as nossas limitações e os gargalos do processo. Precisamos ser Lean.
+A mentalidade DevOps vê oportunidades de melhoria contínua em toda parte. Identificando as limitações podemos otimizar o fluxo, entregando mais velocidade e maior eficiência.
+
+# Measurement
+DevOps é cíclico e infinito. Mensurar e obter métricas é o ponto de partida para novas melhorias, seja para o processo de desenvolvimento, o software produzido ou as regras de negócio.
+Além de gerar conhecimento, métricas criam previsibilidade sobre possíveis incidentes que possam vir a surgir.
+Assim, temos insumos suficientes para analisar falhas e gerar melhorias constantemente.
+
+# Sharing
+O compartilhamento de informações, além de ser saudável auxilia na descentralização de conhecimento em pessoas dos times, evitando que os processos se tornem dependentes.
+Compartilhar conhecimento ajuda na criação de times genéricos, com conhecimentos básicos em diversos assuntos do negócio e tecnologias.
+Assim, o time se torna autossustentável.
+
+## Os Três Caminhos
+- Flow
+- Feedback
+- Learning
+
+# Flow
+A otimização do fluxo visa eliminar desperdícios, gargalos no processo, transferência de responsabilidades e tempos de espera. Esse caminho é trilhado entre a demanda e a entrega em produção.
+A chave para este caminho é a aplicação de metodologias ágeis e a automatização dos processos do desenvolvimento à release, como a integração contínua e/ou entrega contínua.
+
+# Feedback
+Ciclos rápidos de feedbacks visam resolver problemas o quanto antes, testando tudo, alertando em qualquer falha, considerando todas as métricas coletadas no ambiente produtivo sobre o valor entregado.
+O monitoramente é a chave, ajudando a gerar informações relevantes constantemente. Com feedbacks rápidos, o negócio consegue falhar rápido, e logo retomar o rumo, caso necessário.
+
+# Learning
+O aprendizado contínuo visa gerar conhecimento através da experimentação. Hipóteses são melhores do que uma certeza imediata. Este caminho é fruto do processo científico e produz segurança psicológica.
+A chave é o trabalho dinâmico, com times realizando experimentos em seu trabalho diário para gerar novas melhorias. Elimine a cultura da culpa e aumente a colaboração e o compartilhamento de conhecimento.
+
+## Entregando o Software
+# Plan:
+- Microsoft Teams, draw.io, Balsamiq, roadmunk, Confluence, Jira
+# Code:
+- Visual Studio, GitHub, Sublime Text, cmder, git, VS Code, Notepad++
+# Build:
+- container d, docker, NuGet, npm, cri-o, .NET CLI, MSBuild
+# Test:
+- Unit.net, loader.io, Apache JMeter, SELENIUM, Runscope, Postman, sonarqube, code climate, codacy
+# Release
+# Deploy:
+- Azure Pipelines, circleci, AppVeyor, GitLab CI, Travis CI, Jenkins
+# Operate:
+- kubernetes, rancher, Microsoft Azure, puppet, Terraform, chef, openshift, aws
+# Monitor:
+- datadog, Prometheus, APPMetrics, Rollbar, zabbix, New Relic, Pushover, Seq, monitis
+
+
+## Continuous Integration
+# Principais Ferramentas:
+- circleci
+- AppVeyor
+- Azuer Pipelines
+- GitLab CI
+- Travis CI
+- Jenkins
+
+# Pipelines
+# Status Badge
+
+
+## Continuous Inspection
+# Principais Ferramentas:
+- sonarqube
+- code climate
+- codacy
+
+# Complexidade Ciclomática
+# Código Duplicado
+# Vulnerabilidades / Code Smell
+# Padronização e Estilo
+# Débito Técnico
+# Cobertura de Testes
+# Métricas

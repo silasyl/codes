@@ -1,0 +1,59 @@
+Shell Script - Manipulando Arquivos
+
+Shell em computação é uma interface de usuário para acessar os serviços de um sistema operacional.
+
+cd: change directory, muda diretório
+cd /: abre o diretório raiz do sistema
+cd ~: abre o diretório do usuário logado
+cd ..: voltar diretório
+ls: lista o conteúdo
+ls -l: lista o conteúdo em coluna detalhada
+ls -a: lista o conteúdo até os arquivos ocultos
+ls -s: lista o conteúdo com tamanho alocado de cada arquivo, em bloco
+touch: usado para criar arquivos vazios ou alterar data e hora do arquivo
+touch file1.txt file2.txt: criar múltiplos arquivos
+touch -a file.txt: altera hora de acesso
+touch -m file.txt: altera hora da modificação
+touch -c file.txt: altera hora de acesso sem criar um novo arquivo
+touch -t CCYYMMDDhhmm.ss file.txt: definir hora específica de acesso e modificação usando touch
+CCYY: ano
+MM: mês
+DD: dia
+hhmm: hora:min
+ss: segundos
+
+cat: concatenate: cria, une e exibe arquivos
+cat arq1 > arq2: redireciona a saída > para arq2
+mv nome1 nome2: move arquivos e diretórios e renomeia estes também
+mv -i: confirme antes de substituir
+mv -n: sem substituição
+mv -b: substituindo pelo backup
+mv -u: substitua se o arquivo de destino for antigo ou não existir
+cp: permite copiar arquivos ou diretórios para outro local
+cp -i: com confirmação
+cp -v: mostra saída de cópia
+cp -r: cópia de diretório
+cp -l: cria hard links em vez de copiar os arquivos
+cp -s: cria links simbólicos em vez de copiar os arquivos
+cp -u: copia apenas quando o arquivo de origem for mais novo que o arquivo de destino ou quando o destino não existir
+mkdir dir: cria diretórios
+rm nome: remove arquivo
+rm -f nome: remove os arquivos sem perguntar
+find nome: procurar arquivos
+find ./ -type f -name "o": ./ pasta aula -type f file -name o letra o
+find ./ -type d -name "a": todas as pastas com a nas pasta atual
+find -name ".*": arquivos ocultos
+diff: comparar diferença entre arquivos
+rmdir dir: remover diretório vazio
+rm -rf dir: remover diretório não vazio
+
+env: trabalhando com variáveis de ambiente
+Ex variáveis:
+PS1: Prompt da linha de comandos
+HOME: Diretório "/home" de um usuário
+PATH: Lista de diretórios vasculhados quando um comando é executado
+
+var=valor: cria variável
+echo $var: printa a variável
+export var: exportar para variável de ambiente
+env: exibe todas as variáveis de ambiente

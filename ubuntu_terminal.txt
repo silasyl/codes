@@ -1,0 +1,331 @@
+Terminal/Shell/Konsole do Ubuntu/Linux
+
+Atalho: Ctrl+Alt+T
+silas@ubuntu:~$
+O ~ identifica a pasta pessoal: /home/silas
+Seta para cima/baixo navega nos comandos já utilizados
+
+pwd: Caminho logado: /home/silas
+Mesmo diretório da Pasta pessoal em Arquivos
+
+dir: Lista as pastas internas
+ls: Lista diretórios e arquivos (exclusivo para Linux)
+ls -l: Opção lista longa "com detalhes"
+ls dir: Lista outro diretório que não o corrente
+history: Histórico de comandos no terminal
+mkdir dir: Make Directory vai criar dir
+mkdir dir endereço: mkdir Teste/ /home/silas/Documentos
+rm: Remove arquivos
+rm -r: Remove diretórios com a opção -r
+rm -r nome*: Remove todos os arquivos que começam com nome
+rm -r *zip: Remove todos os arquivos com uma extensão
+rmdir dir: Específico para remover diretórios
+cd dir: Change directory para outra pasta
+cd /: Vai para o diretório raiz
+cd ~ : Volta para o diretório pessoal (home)
+cd ..: Retorna ao diretório anterior
+comando --help: Manual em português de um comando
+man comando: Manual de um comando
+mv Nome1 Nome2: Mover ou renomear um arquivo ou diretório (renomeou Nome1 para Nome2)
+mv Nome ~ : (Mover a pasta Nome para o diretório pessoal)
+touch teste.txt: Cria arquivos vazios
+cp linux.txt /home/silas: Copia o arquivo para outro diretório
+clear: Apaga a tela
+exit: Sai da sessão
+!!: Repete o último comando executado
+
+Atalhos do terminal:
+Ctrl+C: Cancela o comando atual em funcionamento
+Ctrl+Z: Pausa o comando atual, em primeiro plano ou segundo plano
+Ctrl+D: Faz o logout da sessão atual
+Ctrl+W: Apaga uma palavra na linha atual
+Ctrl+U: Apaga a linha inteira
+Ctrl+R: Busca um comando recente
+
+nano arquivo.txt: Editor de textos nano em formato Terminal
+Atalhos do nano:
+Ctrl+G: Ajuda
+Ctrl+X: Sair
+Ctrl:O: Salvar
+Ctrl+R: Ler
+Ctrl+W: Procurar
+Alt+6: Copiar
+Ctrl+U: Colar
+Ctrl+K: Recortar
+Ctrl+J: Justificar
+Alt+U: Desfazer
+Alt+E: Refazer
+Alt+A: Selecionar
+Ctrl+T: Verificar ortografia
+Ctrl+\: Substituir
+
+Comandos para manipulação de arquivos e textos e redirecionamento:
+cat arquivo.txt: Visualizar o arquivo
+tac arquivo.txt: Inverte as linhas do arquivo
+find arquivo: Busca por um arquivo e mostra o caminho
+file arquivo: Mostra o tipo de arquivo
+head arquivo: Mostra as primeiras 10 linhas de um arquivo
+tail arquivo: Mostra as últimas 10 linhas de um arquivo
+tail arq1.txt > arq2.txt: Copia as linhas em um arquivo novo
+grep termo arquivo: Faz busca por um termo no arquivo
+echo "Texto": Aparece Texto no terminal
+echo -e "Texto\n": Aparece Texto com caracteres de formatação
+
+|: possibilita usar dois comandos juntos
+tail arquivo.txt | grep termo: Busca e 10 últimas linhas
+
+Comandos para paginação de textos:
+cat arquivo.txt | more: divide o arquivo e coloca paginação com more
+cat arquivo.txt | less: divide o arquivo e coloca paginação com :
+
+&: Separa no terminal cada função
+&&: Executa as duas funções em consecutivo
+cat arq1.txt && cat arq2.txt: mostra os dois arquivos juntos
+mkdir pasta && cd pasta: cria e abre a pasta
+whatis comando: Mostra o que o comando faz
+cal: calendário do mês atual
+cal 2021: calendário do ano
+cal > calendario.txt: Posso usar nano para editar esse calendário
+date: mostra a data com dia mês ano horário
+date >> calendario.txt: Adicionar informação a um arquivo
+cat arq1.txt >> arq2.txt: Adicionando texto a um arquivo
+<: Direciona a entrada de um arquivo para a saída de um comando
+
+Diretórios do Linux
+/bin/	Binários principais dos usuários (executáveis)
+/boot/	Arquivos do sistema de Boot (carregar e inicializar o SO)
+/dev/	Arquivos de dispositivos
+/etc/	Arquivos de configuração do sistema
+/home/	Diretório dos usuários comuns do sistema
+/lib/	Bibliotecas essenciais do sistema e os módulos do kernel
+/media/	Diretório de montagem e dispositivos
+/mnt/	Diretório de montagem de dispositivos - mesmo que "media"
+/opt/	Instalação de programas não oficiais da distribuição ou por conta do usuário
+/sbin/	Armazena arquivos executáveis que representam comandos administrativos. Exemplo shutdown
+/srv/	Diretório para dados de serviços fornecidos pelo sistema
+/tmp/	Diretório para arquivos temporários
+/usr/	Segunda hierarquia do sistema, onde ficam os usuários comuns do sistema e programas
+/var/	Diretório com arquivos variáveis gerados pelos programas do sistema. Exemplo: logs, histórico de impressoras, e-mail e cache
+/root/	Diretório do usuário root - O usuário root tem o total poder sobre o sistema. Podendo instalar, desinstalar, configurar
+/proc/	Diretório virtual controlado pelo Kernel
+
+cat /proc/cpuinfo: Mostra os dados técnicos do processador
+lscpu: Visualiza as informações do CPU
+cat /proc/meminfo: Mostra os dados relacionados à memória
+free: Informações de memória física e virtual
+lshw: Lista de todos os hardwares
+lshw -short: Lista curta dos hardwares
+uname: Nome do kernel do sistema
+uname -r: Versão do kernel
+uname -m: arquitetura do kernel
+arch: Mostra a arquitetura do kernel
+lspci: Visualiza todos os hardwares conectados via PCI
+lsusb: Visualiza todos os dispositivos USB
+du -h ~: espaço de HD no diretório pessoal
+reboot: Reinicia o sistema
+shutdown -r: Reinicia o sistema
+shutdown -h now: Desliga o sistema
+cat /etc/passwd: Mostra todos os usuários do sistema
+
+
+Fundamentos de Redes
+Rede Wan: Wide Area Network ou World Area Network é uma rede geograficamente distribuída.
+
+Rede Man: Metropolitan Area Network é uma rede metropolitana que interligam várias redes locais.
+
+Rede Lan: Local Area Network é uma rede local de uma forma geral em um único prédio ou campus.
+
+Protocolos: é a "linguagem" usada pelos dispositivos de uma rede de modo que eles consigam se entender.
+
+IP: Protocolo de Internet - Endereço IP - números que identificam seu computador em uma rede
+
+ICMP: Internet Control Message Protocol - tem por objetivo prover mensagens de controle na comunicação entre os nós
+
+DNS: Domain Name Server - esse protocolo de aplicação tem por função identificar endereços IPs e manter uma tabela com os endereços dos caminhos de algumas redes
+
+Interface de Rede: faz a comunicação em uma rede de computadores. No Linux estão localizadas no diretório /dev e a maioria é criada dinamicamente pelos softwares quando são requisitadas.
+Ex: eth0 - Placa de rede Ethernet - cabeada
+
+Interface loopback é essencial, possibilita testar programas, sem interferir em sua rede. Padrão o endereço é IP 127.0.0.1
+
+Terminal:
+sudo apt install net-tools: Para instalar o pacote de ip
+sudo apt install traceroute: Pacote de traceroute
+sudo apt install whois: Pacote whois
+sudo apt install finger: Pacote finger
+sudo: eleva os privilégios
+
+ifconfig: informações sobre a interface de rede e IP
+ens33 ->	é a rede cabeada
+			inet é o ip na lan (ipv4)
+			netmask é a máscara de rede (separa a rede pública da rede privada)
+			broadcast: endereço público da rede local
+			inet6: ipv6
+			ether: endereço MAC, endereço físico, da placa de rede (único gravado na placa)
+lo ->		é o endereço local, loopback
+			inet do loopback é 127.0.0.1
+
+hostname: Informações sobre o host na rede
+hostname -I: Endereço IP na rede
+hostname -i: Endereço loopback do host
+dig url: Informações de DNS de um host
+dig url +short: mostra apenas o endereço IP do link
+w: Informações detalhadas sobre o usuário do computador na rede
+who: Informações de como está ligado na rede
+whoami: Nome do usuário do computador na rede
+whois url: Mais informações do link
+traceroute url: Mostra a rota até o link
+ping url: faz parte do protocolo ICMP, verifica se o host está ativo ou inativo
+ping url -w 4: -w faz esperar 4 segundos (4 pings)
+finger: Mostra informações do usuário e da rede
+
+
+Comandos diversos no Linux
+ls -a: . mostrando arquivos e diretórios ocultos
+ls -F: diretórios com / na frente
+nl arquivo: number of lines (mostra como cat)
+wc -l arquivo: conta número de linhas, com as linhas em branco
+wc -w arquivo: conta palavras
+wc -c arquivo: conta bytes
+wc -m arquivo: conta caracteres
+sort -n arquivo: ordena um arquivo
+time: tempo de um processo
+time traceroute url: tempo do processo rota
+uptime: tempo que o sistema está rodando
+cmp arq1 arq2: compara tamanho 2 arquivos
+diff arq1 arq2: mostra diferenças entre 2 arquivos
+seq 1 10: imprime uma sequência de números
+route -n: mostra todas as tabelas de roteamento IP do kernel
+alias hh='history': cria alias para comandos
+last reboot: mostra informações de reinicialização do sistema
+history -c: apaga o histórico
+init 0: desliga a máquina
+telinit 0: desliga a máquina
+halt: pede autenticação para desligar a máquina
+whereis: exibe o caminho do programa e seu manual
+which: exibe o caminho de um programa
+logout: finaliza a sessão
+
+sudo apt install cowsay
+cowsay "Texto": Desenha uma vaca falando Texto
+cowsay -d "Texto": Muda a cara da vaca xP
+cowsay -g "Texto": Muda a cara da vaca $.$
+cowsay -f tux "Texto": pinguim
+cowsay -f vader "Texto": vaca de Vader
+cowsay -f vader-koala "Texto": koala de Vader
+cowsay -f dragon "Texto": dragão
+xcowsay: versão mais aprimorada 3D
+cmatrix: efeito matrix letras caindo
+
+
+Controle de usuários, grupos e permissões
+sudo adduser nomedousuario: adicionar usuário
+su usuario: trocar de usuário
+sudo su: troca para o usuário root
+passwd usuario: trocar senha do usuário
+lastlog: exibe as informações de login de todos os usuários
+last: listagem de entrada e saída do usuário no sistema
+logname: exibe o nome do usuário atual logado no sistema
+id: exibir todos os identificadores do usuário
+cat /etc/passwd: exibir todos os usuários
+sudo userdel -r usuario: remover um usuário e a pasta pessoal deste
+
+Grupos
+Permitem organizar os usuários e definir permissões de acesso a arquivos e diretórios de forma mais fácil.
+cat /etc/group: exibir todos os grupos do sistema
+groups: exibir todos os grupos do usuário
+sudo addgroup grupo: criar um grupo
+sudo adduser usuario grupo: adicionar um usuário a um grupo
+sudo gpasswd -a usuario grupo: adicionar um usuário a um grupo
+sudo gpasswd -d usuario grupo: remover um usuário de um grupo
+sudo groupdel grupo: remover um grupo
+
+Permissões
+Permissões em arquivos e diretórios servem para restringir acessos como: leitura, escrita e execução, onde:
+r - read (leitura)
+w - write (escrita)
+x - eXecution (execução)
+ls -lh: verificar permissões em um diretório
+
+Ex:
+d rwx r-x r-x 2 silas silas (direetório)
+- rw- rw- r-- 1 silas silas (arquivo)
+
+d: identifica diretório / - identifica arquivo
+rwx / rw-: permissão do dono
+r-x / rw-: permissão de quem está nesse grupo
+r-x / r--: permissão dos outros usuários
+
+Modo Octal:
+A máscara octal é composta por números sob a base 8:
+O primeiro dígito representa o dono do ficheiro/diretório (u)
+O segundo dígito representa o grupo (g)
+O terceiro dígito representa os outros (o)
+As permissões são especificadas para cada grupo.
+(u)(g)(o)
+rwxrwxrwx
+421421421
+
+chmod xxx nome: mudar a permissão de um arquivo ou diretório
+
+
+Compactação, descompactação e arquivamento
+Compactadores:
+gzip: compactador muito usado, possui uma taxa excelente de compactação
+gzip arquivo.txt: compacta para .gz (substitui)
+gzip -9 arquivo.txt: usa a compactação máxima
+gunzip arquivo.txt.gz: descompacta gz (substitui)
+
+zip arquivo.zip arquivo.txt: compacta para .zip (mantém)
+zip arquivos.zip arq1.txt arq2.txt: compacta vários arquivos
+unzip arquivo.zip: descompacta zip (mantém)
+
+bzip2 arquivo.txt: compacta para .bz2 (substitui)
+bzip2 -d arquivo.bz2: descompacta bz2 (substitui)
+
+rar: necessita ser instalado na primeira utilização
+rar a arquivo.rar arquivo.txt: compacta para .rar (mantém)
+rar a arquivo.rar arq1.txt arq2.txt: compacta vários arquivos
+rar x arquivo.rar: descompacta rar (mantém)
+
+Arquivadores
+Um arquivador junta vários arquivos em um só, mas pode ser usado em conjunto com um compactador para armazenar arquivos compactados.
+tar: é um arquivador muito utilizado no Linux até mesmo em arquivos de sistema
+tar -cf arquivo.tar arquivos: arquiva para .tar (mantém)
+tar -xvf arquivo.tar.gz: descompacta arquivo tar gz (mantém)
+tar -xvf arquivo.tar.gz -C diretório: descompacta em outro diretório
+tar -xvf arquivo.tar.gz -C ~/Documentos: exemplo
+
+
+Gerenciamento de pacotes
+Pacotes são programas colocados dentro de um arquivo identificados por sua extensão, e incluem arquivos necessários para a instalação desse programa.
+Existem pacotes com a extensão .deb, .rpm. e outros.
+
+Gerenciadores de Pacotes são sistemas que possuem resolução automática de dependências entre pacotes, método fácil de instalação de pacotes.
+Exemplos de Gerenciadores: dpkg, apt e yum.
+
+apt:
+sudo apt install pacote: instala pacote
+sudo apt upgrade pacote: atualiza pacote
+sudo apt remove pacote: remove pacote
+sudo apt update && apt upgrade: atualiza o sistema (como sudo)
+
+Sites de Pacotes:
+pkgs.org
+rpm.pbone.net
+
+dpkg:
+sudo dpkg -i pacote.deb: instala pacote .deb baixado
+sudo dpkg -I pacote.deb: descrição do pacote
+sudo dpkg -r nomedopacote: remove o pacote (nome na descrição do pacote)
+
+Fedora
+rpm:
+sudo rpm -ivh --nodeps pacote.rpm: instala pacote .rpm baixado
+sudo rpm -U pacote.rpm: atualiza o pacote
+sudo rpm -e pacote.rpm: remove o pacote
+
+yum:
+sudo yum install pacote: instala pacote
+sudo yum update pacote: atualiza o pacote
+sudo yum remove pacote: remove o pacote

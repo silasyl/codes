@@ -1,0 +1,879 @@
+Desenvolvimento básico em Java
+
+##Instalação do Java 15
+
++ https://www.linuxuprising.com/2019/06/new-oracle-java-11-installer-for-ubuntu.html
+
+# Download jdk-15.0.2_linux-x64_bin.tar.gz
+
+$ sudo mkdir /var/cache/oracle-jdk15-installer-local/: Create dir
+$ cd Downloads
+$ sudo mv jdk-15.0.2_linux-x64_bin.tar.gz /var/cache/oracle-jdk15-installer-local/: move file
+$ sudo add-apt-repository ppa:linuxuprising/java: Add Linux Uprising Java PPA
+$ sudo apt update
+$ cd /var/cache/oracle-jdk15-installer-local/
+$ sudo apt install oracle-java15-installer
+
+$ sudo apt purge java :old versions
+
+export JAVA_HOME="/usr/lib/jvm/java-15-oracle"
+export PATH=$JAVA_HOME/bin:$PATH
+
+java --version
+
+# Ver detalhes na pasta instalada:
+ll /usr/lib/jvm/java-15-oracle
+
+## Ferramentas de build
+
+### Gradle (Sistema de build)
++ https://gradle.org/
+
+- versão 6.8.2
+- Ganhando popularidade (Android Studio)
+- Usa linguagem de programação Groovy
+
+$ sudo mkdir /opt/gradle
+$ cd ~/Downloads
+$ sudo unzip -d /opt/gradle gradle-6.8.2-bin.zip
+$ ls /opt/gradle/gradle-6.8.2
+$ export PATH=$PATH:/opt/gradle/gradle-6.8.2/bin
+
+$ sudo apt purge gradle //old versions
+
+$ gradle -v
+
+### Maven (Sistema de build)
++ https://maven.apache.org/
+
+- versão 3.6.3
+- Legados do ANT
+- Baseado em XML
+
+$ sudo mkdir /opt/maven
+$ sudo unzip -d /opt/maven apache-maven-3.6.3-bin.zip
+$ ls /opt/maven/apache-maven-3.6.3
+$ sudo apt purge maven //old versions
+$ export PATH=$PATH:/opt/maven/apache-maven-3.6.3/bin
+
+/usr/lib/jvm/java-15-oracle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/gradle/gradle-6.8.2/bin:/opt/maven/apache-maven-3.6.3/bin
+
+
+$ mvn -v
+
+- Para garantir a mesma versão para todos os desenvolvedores:
+### Wrappers
++ https://github.com/takari/maven-wrapper
++ https://docs.gradle.org/current/userguide/gradle_wrapper.html
+
+$ gradle wrapper
+$ ./gradlew -v
+
+$ mvn -N io.takari:maven:wrapper
+$ ./mvnw -v
+
+### IntelliJ IDEA (IDE desenvolvimento)
++ https://www.jetbrains.com/pt-br/idea/
+
+$ cd Downloads
+
+## Versão 2020:
+$ sudo tar -xvf ideaIC-2020.3.2.tar.gz
+$ cd idea-IC-203.7148.57/bin/
+$ ./idea.sh
+
+## Versão 2019:
+$ sudo tar -xvf ideaIC-2019.3.5.tar.gz
+$ cd idea-IC-193.7288.26/bin/
+$ ./idea.sh
+
+### Sprint Initializr (Spring Boot project)
++ https://start.spring.io
+
+Group: Domínio onde se trabalha, ao contrário, por exemplo: br.com.google
+Artifact: Projeto
+
+pom.xml: é o principal arquivo onde se descreve como o projeto será configurado, no Maven ou Gradle.
+
+Rodar o IntelliJ:
+## Versão 2020
+$ cd ~/Downloads/idea-IC-203.7148.57/bin/
+$ ./idea.sh
+
+## Versão 2019
+$ cd ~/Downloads/idea-IC-193.7288.26/bin/
+$ ./idea.sh
+
+### Maven:
+## Criando o spring boot:
+Lifecycle: install
+## Rodando o spring boot:
+Plugins: spring-boot: run
+
+### Graple:
+## Criando o spring boot:
+Tasks: build: build
+## Rodando o spring boot:
+Tasks: bootRun
+
+Rodando o spring boot pelo terminal:
+Maven:
+$ cd ~/Downloads/exemplo-maven
+$ java -jar target/exemplo-maven-0.0.1-SNAPSHOT.jar
+
+Gradle:
+$ cd ~/Downloads/exemplo-gradle
+$ java -jar build/libs/exemplo-gradle-0.0.1-SNAPSHOT.jar
+
+
+O que é Java?
+Java é uma linguagem de programação e plataforma computacional lançada em 1995 pela Sun Mucrosystems, por um time comandada por James Gosling. Anos depois foi adquirida pela Oracle.
+Diferente de outras linguagens de programação, que são compilados para código nativo, o Java é compilado para um bytecode que é interpretado por uma máquina virtual.
+Código Java .java
+
+O que é compilador?
+Um compilador é um programa que, a partir de um código fonte, cria um programa semanticamente equivalente, porém escrito em outra linguagem, código aberto. Um compilador traduz um programa de uma linguagem textual para uma linguagem de máquina, específica para um processador e sistema operacional.
+O nome compilador é usado principalmente para os programas que traduzem o código fonte de uma linguagem de programação de alto nível para uma linguagem de programação de baixo nível (por exemplo Assembly ou código de máquina).
+Compilador javac
+
+O que é bytecode?
+É o código originado da compilação de programas Java.
+O bytecode é o programa interpretado e executado pela Máquiva Virtual Java, JVM.
+bytecode .class
+
+O que é JVM?
+Uma Máquina Virtual, ou Virtual machine, é um software que simula uma máquina física e consegue executar vários programas, gerenciar processos, memórias e arquivos. Tudo isso faz parte de uma plataforma com memória, processador e outros recursos totalmente virtuais, sem dependência de hardware.
+A JVM é uma máquina virtual que executa programas Java, executando os bytecodes em linguagem de máquina para cada sistema operacional.
+Em linguagens compiladas diretamente para um sistema operacional (SO) específico, esse programa não irá executar em outro SO, havendo a necessidade de compilar uma versão do software para cada SO.
+Com o Java, compilamos para a JVM, o bytecode será executado pela máquina virtual, e não diretamente pelo SO, assim, o software escrito em Java possui portabilidade para qualquer sistema operacional, porém, cada JVM deve ser construída para um SO específico.
+
+O que é JRE?
+JRE significa Java Runtime Environment, ou Ambiente de Execução do Java, é composto pela Java Virtual Machine (JVM), bibliotecas e APIs da linguagem Java e outros componentes para suporte da plataforma Java.
+Ele representa a parte responsável pela execução do software Java.
+$ sudo apt-get install openjdk-8-jre
+
+O que é JDK?
+Java Development Kit (JDK), Kit de Desenvolvimento Java, é um conjunto de utilitários que permitem criar software para a plataforma Java. É composto pelo compilador Java, bibliotecas de linguagem, ferramentas e a JRE.
+$ sudo apt-get install openjdk-8-jdk
+
+O que é Java SE?
+Java Standard Edition (SE), é a distribuição mínima da plataforma de desenvolvimento de aplicações Java.
+OpenJDK é a implementação de referência opensource da Plataforma Java, Java SE, que ainda é mantida pela Oracle.
+
+O que é Java EE?
+Java Enterprise Edition, é uma extensão da Java SE que possui suporte a desenvolvimento de sistemas corporativos.
+Além do mínimo da plataforma, o Java EE possui diversas especificações de partes da infra estrutura de aplicações, como acesso a banco de dados, mensageria, serviços web, paeser de arquivos e outras.
+Servidores de Aplicações Java EE, sabem seguir essas especificações e implementar os recursos para os usuários.
+Ex: JBoss (RedHat), Weblogic (Oracle), WebSphere (IBM) e
+Glassfish = Implementação de Referência Opensource: https://javaee,github.io/glassfish
+
+O que é Jakarta EE?
+Com a falta de investimento da Oracle no Java, ela cedeu todo o código, implementações e especificações do Java EE para a Eclipse Foundation, mas como o nome Java EE é uma marca registrada, foi escolhido o nome Jakarta EE.
+Agora a evolução das especificações e padrões do Java será feito sob o nome Jakarta EE, com a compatibilidade com o Java EE.
+
+
+Comandos de linha para compilar um arquivo java:
+$ mkdir hello-java
+$ cd hello-java
+$ nano Hello.java
+
+public class Hello {
+	public static void main(String[] args) {
+		System.out.println("Hello!");
+	}
+}
+
+$ javac Hello.java: compila, gera o .class
+$ java Hello: roda o .class
+$ cat Hello.java: posso ler o código em Java
+
+
+### Características da Linguagem Java
+https://github.com/andrelugomes/digital-innovation-one
+Projeto:
+- IntelliJ 2019.3.5
+- Java 15
+- Gradle 6.8.2
+
+New Project
+Checar File > Project Structure: Project: SDK e Project language level: 15
+Mudar no build.gradle: sourceCompatibility = 1.11 (ou 1.15)
+
+Assuntos:
+- Classes
+	- Main
+	- Atributos (variáveis)
+	- Métodos (funções)
+		Retornos
+		Parâmetros (entrada)
+		Assinatura (argumentos)
+	- Construtores
+	Construtor é um método particular, com o mesmo nome da classe e explica como ele vai construir a classe quando ele instanciar um objeto.
+Toda classe precisa de um nome. Por convenção começam com letra maiúscula:
+$ public class Programa { }
+public: modificador de acesso
+Método principal para executar um programa em Java:
+$ public static void main(String[] args) { }
+
+## Tipos
+# Primitivos:
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+Não aceitam NULL, possuem valores default
+	byte 					0
+	short					0
+	int 					0
+	long 					0L
+	float 					0.0f
+	double 					0.0d
+	char 					'\u0000'
+	boolean					false
+	String(or any object) 	null
+	(n primitivo)
+
+
+# Wrappers:
+São objetos que representam os primitivos
+Auto-boxing e Unboxing
+Auto-boxing: Passo o valor puro para um tipo de objeto. São classes e aceitam valores nulos
+	Byte
+	Short
+	Integer
+	Long
+	Float
+	Double
+	Character
+	Boolean
+Unboxing: Dada uma classe, construo o objeto e atribuo o tipo ao primitivo.
+
+
+# Não Primitivos
+https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
+- String
+- Number
+- Object
+- Qualquer outros objetos
+
+Vantagem de se usar classes é poder usar todos os métodos que as classes, wrappers entregam.
+
+
+# Tipagem forte e estática
+Forte e estática
+var - Inferência de tipo
+
+Tipagem estática: significa que os tipos das variáveis são verificados em tempo de compilação.
+Tipagem forte: uma vez que atribui um tipo a uma variável, não consigo mudá-lo.
+Tipo Inferido: Posso criar variáveis, atribuir tipos a elas, sem declarar o tipo de forma explícita, usando apenas var.
+
+
+## Modificadores de acesso
+# public
+public pode ser acessada de qualquer lugar por qualquer entidade que possa visualizar a classe a que ela pertence.
+
+# private
+os métodos e atributos da classe definidos como privados não podem ser acessados ou usados por nenhuma outra classe. Esses atributos e métodos também não podem ser visualizados pelas classes herdadas.
+
+# protected
+Torna o membro acessível às classes do mesmo pacote ou através de herança, seus membros herdados não são acessíveis a outras classes fora do pacote em que foram declarados.
+
+# default (padrão)
+A classe e/ou seus membros são acessíveis somente por classes do mesmo pacote, na sua declaração não é definido nenhum tipo de modificador, sendo este identificado pelo compilador.
+
+# abstract
+Esse modificador não é aplicado nas variáveis, apenas em classes e métodos. Uma classe abstrata não pode ser instanciada. Se hourver alguma declaração de um método como abstract (abstrato), a classe também deve ser marcada como abstract.
+O método abstract não tem corpo { }.
+
+# static
+É usado para a criação de uma variável que poderá ser acessada por todas as instâncias de objetos desta classe como uma variável comum, ou seja, a variável criada será a mesma em todas as instâncias e quando seu conteúdo é modificado numa das instâncias, a modificação ocorre em todas as demais. E nas declarações de métodos ajudam no acesso direto à classe, portanto não é necessário instanciar um objeto para acessar o método.
+
+# final
+Quando é aplicado na classe, não permite estender, nos métodos impede que o mesmo seja sobrescrito (overriding) na subclasse, e nos valores de variáveis não pode ser alterado depois que já tenha sido atribuído um valor.
+
+
+## Interfaces
+# Métodos abstratos
+Devem ser implementados por todos;
+Novos métodos quebram as implementações;
+
+# Métodos default
+São herdados a todos que implementam;
+Novos métodos não quebram as implementações;
+
+# Herança múltipla***
+A linguagem Java não possui herança múltipla, não é possível estender mais de uma classe, mas com interfaces é possível implementar mais de uma interface.
+
+
+## Enums
+- Basicamente é dicionários de dados imutável;
+- Não é permitido criar novas instâncias;
+- O construtor é sempre declarado como private;
+- Por convenção, por serem objetos constantes e imutáveis (static final), os nomes são em MAIÚSCULOS.
+
+
+
+### Características da Linguagem Java II
+https://github.com/andrelugomes/digital-innovation-one
+- Strings
+- Laços, Condições e Operadores
+- Convenções
+
+## Strings
+É uma sequência de caracteres;
+Pacote java.lang;
+
+Estudar e testar demais métodos da classe String que não foram testados. Ex:
+System.out.println("A B C D E F G".toCharArray());
+System.out.println("Aula de Java".split(" "));
+System.out.println("Aula".concat(" de Java"));
+System.out.println("1234 asda qw".replaceAll("[0-9" "#"));
+
+
+## Laços, Condicionais e Operadores
+IF e IF Ternário
+FOR
+While e Do/While
+Operadores
+	Igualdade
+	Lógicos
+	Incremento
+	Matemáticos
+	Relacionais
+
+Exercícios com IntStream;
+IntStream.of(1,2,3,4,5).forEach(n->{
+	System.out.println(n);
+})
+
+IntStream.range(0,3).forEach(n->{
+	System.out.println("Número = "+n);
+})
+
+
+## Convenções de nomes
+# Nomes de Classes
+Primeira letra maiúscula de cada palavra, o resto minúscula.
+
+# Nomes de Métodos
+Sempre minúsculos. Palavras múltiplas iniciando o primeiro com minúsculo.
+
+# Nomes de variáveis
+Nomes sucintas. Não é convencional usar números ou caracteres especiais como $_. Geralmente começam com minúscula também.
+
+# Code Style (plugins)
+Checkstyle Gradle Plugin
+https://checkstyle.sourceforge.io/
+Aba Style Configurations > Google's Style > Checkstyle configuration for 'Google Java Style' > Copiar o código e colar no diretório do código "config/checkstyle/checkstyle.xml"
+
+https://docs.gradle.org/current/userguide/checkstyle_plugin.html
+https://github.com/checkstyle/checkstyle
+
+PMD Gradle Plugin
+https://pmd.github.io
+Documentation > About > Github releases page > ???
+https://docs.gradle.org/current/userguide/pmd_plugin.html
+
+No arquivo build.gradle modificar/adicionar:
+
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'pmd'
+}
+
+checkstyle {
+	toolVersion = '8.40'
+	showViolations = true
+	configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+pmd {
+	//ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+	ruleSetFiles = files("config/pmd/ruleset.xml")
+	toolVersion = '6.31.0'
+	ignoreFailures = true
+	consoleOutput = true
+}
+
+
+
+### Orientação a Objeto com Java
+http://github.com/marcopollivier/DigitalInnovationOne-CursoBasicoJava
+## O Paradigma OO
+## Construtores
+## Encapsulamento, Herança e Polimorfismo
+## This, Super, Equals e HashCode
+
+## O Paradigma OO
+"A programação Orientada a Objetos impõe disciplina sobre a transferência indireta do controle"
+
+"...a pilha de chamadas funções ... poderia ser movida para HEAP (área de memória não necessariamento ordenada - diferente da stack) possibilitando que as variáveis locais declaradas por uma função existissem muito depois que a função retornasse..."
+
+"A diferença entre um Código Procedural e um O.O é bem simples. Em códigos procedurais (...) escolher o melhor algoritmo é o mais importante (...) Já em linguagens orientados a objetos (...) pensar no projeto de classes (...) como se encaixam (...) e como serão estendidas é o que mais importa."
+
+
+## Classe
+Vamos entender uma classe como um modelo a ser seguido.
+Uma classe vai funcionar como uma espécie de molde que nos servirá como base para construir algo.
+Por exemplo, quando pensamos em construir uma casa, nós fazemos uma planta baixa. Ela será o modelo que utilizaremos para construir algo concreto.
+As classes funcionam de forma parecida. Ex:
+
+public class Pessoa {
+	private String nome = "Marco";
+	public String getNome() {
+		return nome;
+	}
+}
+# atributo: nome
+# método: como saber o nome
+
+## Objeto
+Agora que entendemos que temos um modelo que podemos seguir. O que podemos fazer com esse modelo?
+Bom... Nós fizemos a analogia da casa, certo? Depois de termos a planta baixa, nós começamos a construir.
+E o resultado do que nós construímos, vamos chamar de objeto.
+Quando nós utilizamos a nossa classe Pessoa - mostrada no código anterior - para criar um objeto, nós diremos que estamos instanciando um objeto da classe Pessoa.
+E esse termo é bem simples de entender. O que acontece é que podemos criar vários objetos de uma mesma classe, ou seja, várias instâncias de objetos.
+
+public class ExemploPessoa {
+	public static void main(String[] args) {
+		Pessoa pessoa = new Pessoa();
+		System.out.println(pessoa.getNome());
+		// Marco
+	}
+}
+
+## Atributos
+Agora vamos pensar no que nos definimos como nome. Foi tão intuitivo nós pensarmos que uma pessoa teria um nome que nem demos importância a ele.
+O nome é uma característica de uma Pessoa e pode ser diferente de pessoa para pessoa.
+O nome é um atributo da pessoa.
+
+## Métodos
+Agora vamos pensar que uma pessoa pode ter ações. Por exemplo, uma pessoa pode falar.
+Pensando em um cenário mais específico, uma pessoa pode falar o seu nome.
+As ações que nós definimos que uma classe pode ter, nós chamamos de métodos.
+
+public class ExemploMetodos {
+	public static void main(String[] args) {
+		Pessoa pessoa = new Pessoa();
+		System.out.println(pessoa.falarMeuProprioNome());
+		// Olá, meu nome é Marco
+	}
+}
+
+
+## Construtores
+Podemos entender o termo construtor no sentido literal, afinal vamos construir um objeto.
+Por meio de um construtor, criamos um objeto baseado em uma Classe e assim o alocamos em memória.
+Ao criarmos um objeto dizemos que estamos instanciando um objeto.
+Esse exemplo que acabamos de ver é o exemplo mais comum quando começamos a estudar construtores em Java.
+E para instanciar essa classe (criar um objeto dela) fazemos o seguinte:
+
+Pessoa pessoa = new Pessoa();
+
+Quando não temos um construtor padrão (sem parâmetros) definidos em uma classe, é subentendido que temos um construtor desse tipo na classe.
+Mas cuidado! Isso só vale quando não tiver outro construtor definido.
+Também podemos criar construtores parametrizados.
+Dessa forma, conseguimos definir um contrato onde sempre será obrigatório passar alguma informação na hora de instanciar a classe.
+No exemplo abaixo, temos dois construtores. Um com passagem de parâmetro e outro sem.
+Isso garante que possamos instanciar das duas maneiras.
+
+public class Pessoa {
+	public Pessoa(){ 
+	}
+
+	public Pessoa(String nome) {
+		this.nome = nome;
+	}
+}
+
+// instanciando com passagem de parâmetro:
+Pessoa pessoa = new Pessoa("Marco");
+
+// instanciando sem passagem de parâmetro:
+Pessoa pessoa = new Pessoa();
+
+Já quando definimos nossa classe com um construtor, se tentarmos instanciar a classe sem passar algum parâmetro no construtor, tomaremos erro em tempo de compilação.
+
+E existe um destrutor?
+Em Java não existe o conceito de destrutor explícito.
+Lembra que falamos que quando instanciamos, estamos, na verdade, alocando o objeto em memória?
+Pois bem, desalocar esse objeto fica por conta do GC (Garbage Collector).
+
+
+## Encapsulamento, Herança e Polimorfismo
+## Encapsulamento
+Mais uma vez vamos entender o termo que estamos trabalhando ao pé da letra.
+Quando falamos de encapsulamento, estamos falando efetivamente em proteger alguma informação de alguma forma, ou seja, com uma cápsula.
+Vamos ver como podemos trabalhar com o encapsulamento nos nossos exemplos anteriores, da Classe Pessoa.
+Na nossa classe, vamos manipular basicamente 2 atributos:
+# Nome;
+# Data de nascimento.
+public não garante encapsulamento (proteção)
+
+Mas afinal o que queremos?
+Queremos garantir a nossa implementação e que o acesso a determinados dados estão realmente protegidos do acesso externo.
+Para esse exemplo específico:
+- Queremos que o nome possa ser alterado.
+Vamos pensar que uma pessoa pode casar e mudar seu nome.
+- Não queremos alterar a data de nascimento.
+A pessoa nasce com ela e não pode mudar.
+- Queremos de alguma forma retornar a idade da pessoa.
+
+- Defino meu nome e minha data de nascimento no contrato;
+- Consigo mudar meu nome posteriormente;
+- Consigo ler meu nome a qualquer momento;
+- Consigo apenas ler minha data de nascimento;
+- Consigo calcular quantos anos eu tenho sem precisar conhecer a implementação.
+
+
+## Herança
+Vamos agora falar de outro pilar importante da Orientação a Objetos: a Herança.
+Como o próprio nome já diz, essa é a capacidade de uma Classe herdar o comportamento de outra.
+Pensando em um cenário onde queremos modelar um veículo.
+
+public class Veiculo {
+	private String modelo;
+	private String marca;
+}
+
+Vamos pensar em um cenário onde queremos informações de diversos tipos de veículos.
+Por exemplo: quero colocar a quantidade de portas para o caso de carros e as cilindradas em casos de motocicletas.
+
+public class Carro extends Veiculo {
+	private int quantidadeDePortas;
+}
+
+public class Motocicleta extends Veiculo {
+	private String cilindradas;
+}
+
+Depois definimos os getters e setters.
+Também aproveitamos comportamentos...
+Nesse cenário, temos o método acelera() na classe veículo.
+
+public static void main(String[] args) {
+	Carro carro = new Carro();
+	carro.acelera();
+
+	Motocicleta moto = new Motocicleta();
+	moto.acelera();
+}
+
+
+## Herança vs Composição
+Existe um vasto e antigo debate em relação a utilização de herança. Algumas bibliografias inclusive defendem que ela nunca deve ser utilizada.
+E o grande problema tem relação com o nosso tópico anterior: o encapsulamento.
+A subclasse necessita conhecer, em muitos casos, a implementação da superclasse, o que cria um acoplamento e quebra a nossa premissa básica do isolamento que vimos no encapsulamento.
+
+
+## Polimorfismo
+Quando famaos em herança, o verbo ser é mandatório na nossa forma de falar sobre a classe.
+Entendemos, portanto, que um carro é um veículo e uma motocicleta também é um veículo.
+Quando falamos de Polimorfismo, estamos querendo entrar em um cenário onde um objeto pode ser referenciado de várias maneiras.
+Vamos continuar no nosso exemplo de veículos.
+
+Agora no nosso exemplo, nós queremos colocar mais uma característica e uma ação que podem ser comuns aos dois, mas com algumas peculiaridades.
+Agora vamos querer calcular o valor aproximado do IPVA dos nossos diferentes tipos de veículos.
+Tanto carros quanto motos pagam IPVA. E o cálculo é baseado no valor venal do veículo.
+Portanto a primeira conclusão que chegamos é que temos uma característica nova na nossa Classe de Veículos, agora temos o valor venal, portanto.
+
+public class Veiculo {
+	private String modelo;
+	private String marca;
+
+	private double valorVenal;
+}
+
+Mas precisamos calcular a nossa precisão de imposto.
+Vamos partir do princípio que:
+- um veículo teria que pagar, no mínimo, 0,01% do valor venal de IPVA;
+- um carro teria que pagar, no mínimo, 0,07% do valor venal de IPVA;
+- uma moto teria que pagar, no mínimo, 0,03% do valor venal de IPVA.
+
+Para isso precisaremos definir implementações diferentes de acordo com a classe que estamos trabalhando.
+E é onde entraria o Polimorfismo.
+Ele nos garantirá a capacidade de um objeto ser referenciado de múltiplas formas.
+O Java será capaz de identificar qual objeto foi instanciado e, assim, escolher qual método será utilizado.
+
+public class Veiculo {
+	...
+	private double valorVenal;
+	...
+	public double calculaImposto() {
+		return this.valorVenal * 0.01;
+	}
+}
+
+public class Motocicleta extends Veiculo {
+	...
+	public double calculaImposto() {
+		return this.getValorVenal() * 0.03;
+	}
+}
+
+public class Carro extends Veiculo {
+	...
+	public double calculaImposto() {
+		return this.getValorVenal() * 0.07;
+	}
+}
+
+
+## This, Super, Equals e HashCode
+## This
+Quando estamos trabalhando com o termo this, no Java, estamos, na verdade, fazendo uma auto referência.
+Esse conceito faz mais sentido quando estamos falando de construtores e métodos.
+
+
+## Super
+Analogamente ao This, quando falamos no Super também estamos fazendo uma referência, mas dessa vez estamos fazendo referência a superclasse em um cenário de herança.
+Atenção!
+Como em Java, todas as nossas classes herdam de Object, se usamos o super em uma classe que não tem um extends explícito, estamos fazendo referência ao Object.
+
+Vamos mudar um pouco o nosso exemplo.
+Primeiro vamos transformar a nossa classe veículo.
+Ela vai passar a ser uma classe abstrata e, portanto, não poderá mais ser instanciada.
+E também vamos definir que o construtor dessa classe sempre irá esperar o modelo, a marca e o valor venal.
+
+
+## Equals
+Como sabemos, todas as classes em Java herdam de Object. E, portanto, tem por padrão alguns métodos.
+Um deles é o equals que serve para fazer comparações entre objetos.
+Entretanto esse método possui algumas peculiaridades.
+Por padrão, quando estamos comparando dois objetos, estamos comparando a referência deles. Então se instanciarmos dois carros, por mais que eles tenham exatamente as mesmas informações, o Java não é capaz de identificar.
+
+Mas poderíamos sobrescrever o métodos equals() para que nossa lógica funcione do jeito que gostaríamos.
+Tenha em mente que é uma boa prática sobrescrever este método.
+
+
+## Hash Code
+Quando falamos em hashCode, precisamos pensar em um código gerado que garanta um caráter único ao nosso objeto.
+Essa pode ser uma forma muito interessante para que possamos comparar se realmente um objeto é igual ao outro.
+Temos que garantir que a implementação da lógica de hashCode sempre respeite as mesmas regras, pois quando compararmos os nossos objetos, o nosso fator de comparação seré ele.
+Exemplo:
+Anteriormente utilizamos o método equals() para fazer a comparação entre dois objetos.
+Entretanto, nós fizemos essa comparação utilizando explicitamente 3 atributos: modelo, marca e valor venal.
+Sendo que poderíamos transferir essa responsabilidade para nosso hashCode.
+
+
+### Princípios S.O.L.I.D.
+## O que é SOLID?
+SOLID é um acrônimo dos princípios da programação orientada a objetos descritas por Robert C. Martin.
+Auxiliam o programador a escrever códigos mais limpos, facilitando a refatoração e estimulando o reaproveitamento do código.
+- Single Responsibility Principle (Princípio da Responsabilidade Única)
+- Open Closed Principle (Princípio Aberto Fechado)
+- Liskov Substitution Principle (Princípio da Substituição de Liskov)
+- Interface Segregation Principle (Princípio da Segregação da Interface)
+- Dependency Inversion Principle (Princípio da Inversão da Dependência)
+
+## S.R.P.: Single Responsibility Principle
+"A class should have one, and only one, reason to change."
+Uma classe deve ter um, e somente um, motivo para mudar.
+- A classe deve possuir uma única responsabilidade dentro do software.
+
+## O.C.P.: Open Closed Principle
+"You should be able to extend a classes behavior, without modifying it."
+Você deve poder estender um comportamento de classe, sem modificá-lo.
+- Objetos devem estar abertos para extensão, mas fechados para modificação.
+- Quando novos comportamentos precisam ser adicionados no software, devemos estender e não alterar o código fonte original.
+
+## L.S.P.: Liskov Substitution Principle
+"Derived classes must be substitutable for their base classes."
+Classes derivadas devem ser substituíveis por suas classes base.
+- O princípio da substituição de Liskov foi introduzido por Barbara Liskov em 1987:
+"Se para cada objeto o1 do tipo S há um objeto o2 do tipo T de forma que, para todos os programas P, o comportamento de P é inalterado quando o1 é substituído por o2, então S é um subtipo de T."
+
+## I.S.P.: Interface Segregation Principle
+"Make fine grained interfaces that are client specific."
+Faça interfaces refinadas que são específicas do cliente.
+- Uma classe não deve ser forçada a implementar interfaces e métodos que não serão utilizados.
+- É melhor criar interfaces mais específicas ao invés de termos uma única interface genérica.
+
+## D.I.P.: Dependency Inversion Principle
+"Dependes on abstractions, not on concretions."
+Dependa de abstrações e não de implementações.
+- Um módulo de alto nível não deve depender de módulos de baixo nível, ambos devem depender da abstração.
+- PS: Inversão de Dependência não é igual a Injeção de Dependência.
+
+
+
+### Manipulação de Datas
+http://github.com/marcopollivier/DigitalInnovationOne-AulaJava
+## Classe Date
+# O java.util.Date
+https://docs.oracle.com/javase/8/docs/api/java/util/Date.html
+A implementação do java.util.Date está na JDK desde sua versão 1.0
+Principais construtores da classe Java Date:
+
+Date()
+Date(int year, int month, int date)
+Date(int year, int month, int date, int hrs, int min)
+Date(int year, int month, int date, int hrs, int min, int sec)
+Date(long date)
+Date(String s)
+
+Entretanto alguns estão marcados como deprecated:
+
+//Todos estão marcados como @Deprecated desde a versão 1.1 da JDK
+Date(int year, int month, int date)
+Date(int year, int month, int date, int hrs, int min)
+Date(int year, int month, int date, int hrs, int min, int sec)
+Date(String s)
+
+Portanto só vamos estudar os seguintes construtores:
+
+Date()
+Date(long date)
+
+# java.util.Date()
+Este construtor vai alocar um objeto da classe Date e o inicializará com o milissegundo mais próximo do período da sua execução.
+
+# Date(long date)
+Diferente do construtor anterior, esse construtor espera que você passe os milissegundos com base padrão de tempo (epoch) que usa como referência 1 de janeiro de 1970 00:00:00.
+- Epoch:
+"O epoch timestamp é um padrão largamente aceito para representar uma data como um inteiro 32-bits a partir do início do Unix Epoch..."
+
+Vamos testar com base no System.currentTimeMillis()
+Esse método estático vai nos retornar o milissegundo mais próximo de sua execução com base no Sistema Operacional.
+
+Alguns métodos da classe Date são muito úteis e serão usados com frequência durante a manipulação de datas. São eles:
+- after(Date): boolean: Data é posterior ao comparado?
+- before(Date): boolean: Data é anterior ao comparado?
+- compareTo(Date): int: Compara dois objetos Data
+- equals(Date): boolean: Checa se os objetos são iguais
+- getTime(): long: Retorna a data em ms
+- setTime(long): void: Define uma data com base em ms
+- from(Instante): static Date: Define uma data bom base em um Instant
+- toInstant(): Instant: Retorna um Instant com base em um Date
+
+# toInstant
+- Surgiu na JDK 1.8;
+- Imutável e Thread safe;
+- Modela um ponto instantâneo de uma linha do tempo;
+- Indicado para gravar marcações temporais em eventos da sua aplicação.
+
+
+## Classe Calendar: java.util.Calendar
+Já na JDK 1.1 foi observada a necessidade de facilitar alguns recursos que a class Date oferecia.
+Sendo assim, a classe Calendar foi criada.
+Com isso uma série de métodos e construtores da classe Date foi depreciada. Por exemplo o construtor Date(int year, int month, int date).
+Calendar é uma classe abstrata que provê métodos para converter data entre um instante específico.
+O Calendar possui alguns campos específicos para manipulação como MONTH, YEAR, HOUR, etc.
+
+# Imprimindo datas e horas
+Aqui vão algumas maneiras de se converter o resultado de um objeto Calendar (código)
+
+
+## Classe DateFormat: java.text.DateFormat
+Nesse ponto em que estamos existem, basicamente, duas classes para formatação de datas. O DateFormat e o SimpleDateFormat.
+Ambos oferecem maneiras de formatar e parsear a saída das datas.
+Já o SimpleDateFormar traz uma grande facilidade que é definir um padrão de formatação para a saída de data que você deseja.
+
+
+## Conhecendo date a partir do Java 8
+O Java 8 veio com uma série de novidades para facilitar o trabalho com Datas.
+E a grande maioria está no pacote java.time que foi herdado do projeto Joda Time.
+https://www.joda.org/joda-time/
+Trabalhar com datas nunca foi tão fácil com esse novo pacote.
+Nele destacam-se três classes:
+- LocalDate;
+- LocalTime;
+- LocalDateTime.
+Basicamente, o que tínhamos até então eram as classes que vimos até agora: Date e Calendar.
+Com o uso constante, elas se mostram confusas e trabalhosas, além de serem mutáveis.
+
+## LocalDate é uma classe imutável para representar uma data.
+Seu formato padrão é yyyy-MM-dd
+
+## LocalTime é uma classe imutável que representa um padrão de hora-minuto-segundo.
+LocalTime pode ser representado até o nível de nanossegundos. Exemplo: 12:22:10:123212345
+Sua utilização é similar ao LocalDate
+
+## LocalDateTime funciona como uma espécie de junção entre o LocalTime e o LocalDate.
+Também é uma classe imutável e você consegue trabalhar com dia e hora de uma só vez.
+Você pode manipular a data e hora com precisão de nanossegundos. Exemplo: 2nd October 2007 at 13:45:30.123456789
+
+
+### Trabalhando com Arrays
+## O que é um array
+- Array ou Matriz, é uma estrutura de dados que nos permite organizar valores na memória.
+- Fazem parte da biblioteca java.util que é nativa do Java
+- Armazenam elementos do mesmo tipo
+- Podem ser unidimensionais ou multidimensionais
+- Cada item em um array é chamado de elemento
+- Cada elemento é acessado pela posição numérica (índice)
+- O índice inicia a partir de 0
+- Ao se declarar um array, todos índices são inicializados em 0
+- Arrays não podem mudar de tamanho, a partir do momento que uma array foi criada, ela não pode mudar de tamanho mais.
+- Se você precisar de mais espaço, será necessário criar uma nova array e, antes de se referir ela, copie os elementos da array velha.
+
+## Declaração de arrays
+- Utilizando o operador "new"
+dataType[] arrayName = new dataType[arraySize];
+int meuArray = new int[7];
+
+- Outra forma
+dataType[] arrayName = {value0, value1, ..., valueN};
+int[] meuArray = {12,32,54,6,8,89,64};
+
+- Para alterar o valor de um elemento específico, coloque o índice desse elemento:
+meuArray[0] = 50;
+
+## Comprimento do array
+- Para descobrir quantos elementos um array possui, use a propriedade length
+System.out.println(meuArray.length);
+
+## Percorrendo arrays
+- Para processar um array, devemos usar um laço de repetição (for, for each, etc)
+Vamos utilizar o for como exemplo
+- Utilizamos uma variável de controle (contador), que vai de 0 até o número de posições do array.
+
+public class MyClass {
+	public static void main(String[] args) {
+		int[] meuArray = {12,32,43,6,8,89,64};
+		for (int i=0;i<7,i++) {
+			System.out.println(meuArray[i]);
+		}
+	}
+}
+
+## Arrays multidimensionais
+- Um array multidimensional é um array contendo um ou mais arrays internos
+Exemplo de array bidimensional:
+
+int[][] meuArrayMulti = {{1,2,3,4},{5,6,7}};
+meuArrayMulti é um array com dois arrays como seus elementos.
+
+- Processando um array multidimensional.
+
+public class MyClass {
+	public static void main(String[] args) {
+		int[][] meuArrayMulti = {{1,2,3,4},{5,6,7}};
+		for (int i=0;i<meuArrayMulti.length,i++) {
+			for(int j=0;j<meuArrayMulti[i].length;j++) {
+				System.out.println(meuArrayMulti[i][j]);
+			}
+		}
+	}
+}
+
+
+
+### Tratamento de Exceções
+## Exceptions
+Exceções são todos os erros que ocorrem durante o processamento de um método que podem ser esperados ou não esperados. Como o termo já diz, "Exceptions" são exceções. Falhas que não devem ocorrer rotineiramente no fluxo de um sistema.
+
+## Checked Exceptions
+São exceções esperadas, cujo fluxo ou método de um sistema foi preparado para receber. Um bom exemplo é uma exceção de negócio, onde se deseja informar um erro caso a exceção esperada ocorra.
+
+## Unchecked Expcetions
+São exceções não esperadas para o fluxo ou método de um sistema, um bom exemplo é a famosa NullPointException que ocorre quando se tenta acessar uma referência de memória vazia, ou recuperar uma instância que não existe, dentre outros motivos.
+
+## Bloco Try catch
+O bloco try catch sempre é utilizado quando no processo que será executado dentro de um método é esperado um erro, então cria-se um bloco "protegido" onde qualquer erro que ocorra dentro do trecho "try" é direcionado para o trecho "catch" e sofrerá o devido tratamento de erro.
+
+## Finally
+O Finally é um bloco de código que pode ou não ser utilizado junto ao try catch, este trecho de código sempre será executado independente se ocorrer erro ou não dentro do fluxo onde existe o try catch. Normalmente o finally é usado para liberar recursos ou para dar continuidade em um fluxo que deve ocorrer independentemente do erro.
+
+## Throw e Throws
+Throws: É a assinatura do método que será retornado caso ocorra erro para o método que fez a chamada, dentro de um fluxo encadeado.
+
+Throw: É usado para lançar a exceção desejada, juntamente com a mensagem de erro, para o método que fez a chamada.
