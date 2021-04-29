@@ -202,6 +202,6 @@ esc
 MongoDB import:
 mongoimport --uri "mongodb+srv://<USER>:<PASSW>@cluster0.3o6tz.mongodb.net/<DATABASE>?retryWrites=true&w=majority" --collection <COLLECTION> --drop --type csv --headerline --file C:\Silas\grades.csv
 
-mongoimport --uri "mongodb+srv://silasyl:adminsilas@cluster0.3o6tz.mongodb.net/grades?retryWrites=true&w=majority" --collection students --drop --type csv --headerline --file C:\Silas\grades.csv
+mongoimport --uri "mongodb+srv://<USER>:<PASSW>@cluster0.3o6tz.mongodb.net/grades?retryWrites=true&w=majority" --collection students --drop --type csv --headerline --file C:\Silas\grades.csv
 
 https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
