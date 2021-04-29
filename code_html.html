@@ -1,0 +1,192 @@
+<!--HTML - Linguagem de marcação de textos
+
+Usa tags, exibe textos formatados por tags.
+HTML5 é a mais recente versão da linguagem HTML.
+Trás novas tags como <header> para cabeçalhos, <nav> para menus, <video> e <audio>.
+Uma página HTML é composta de:
+(i) declaração do tipo do documento <!DOCTYPE html>
+(ii) a tag HTML, que armazernará todo conteúdo da página <html>
+(iii) o cabeçalho, que armazena informações estruturais da página <head>
+(iv) o corpo, que armazenará os conteúdos e formatações da página <body> -->
+<!-- comentários entre -->
+
+<!DOCTYPE html>
+Inicia com essa declaração para o tipo de documento
+
+<html lang="pt-br"></html> lang indica a linguagem da página
+
+<head></head> Configurações importantes da página. É lido mas não exibido.
+
+<meta charset="utf-8"> charset define o conjunto de caracteres que fará parte da página. utf-8 contém acentos, cecidilha, etc.
+
+<title></title> título da página. É exibido.
+
+<body></body> Conteúdo da página.
+<header></header> Cabeçalho da página
+<div></div> Tag de divisória
+
+<!-- Tags de formatação: -->
+<p>Textos</p> Espaçamento de parágrafo
+<br> Quebra de linha
+<h1> Título 1 </h1> Maior de todos e negrito
+<h2> Título 2 </h2>
+<h3> Título 3 </h3>
+<h4> Título 4 </h4>
+<h5> Título 5 </h5>
+
+<p>
+    <b>Texto em negrito</b><br>
+    <i>Texto em itálico</i><br>
+    <u>Texto sublinhado</u><br>
+    <sub>Texto subscrito</sub><br>
+    <sup>Texto sobrescrito</sup><br>
+    <big>Texto com fonte maior do que o padrão</big><br>
+    <small>Texto com fonte menor do que o padrão</small><br>
+    <em>Texto em itálico</em><br>
+    <strong>Texto em negrito</strong>
+</p>
+
+<!-- Declarando uma única fonte -->
+<p style="font-family: 'Times New Roman'">Olá, mundo!</p>
+ 
+<!-- Declarando duas possíveis fontes -->
+<p style="font-family: 'Helvetica, Arial'">Olá, mundo novamente!</p>
+
+<!-- Estilos permitem que a página tenha diversos tipos de formatações. Eles podem ser declarados com o <p> ou com <style> 
+<style> deve ser declarado dentro do <head> -->
+
+<!-- Alterando cor ao parágrafo -->
+<style>
+p { color: red; }
+</style>
+
+<!-- Alterando cor ao fundo -->
+<style>
+body { background-color: red; }
+</style>
+Cor pode ser em inglês, código hexadecimal ou RGB
+<style>
+p { color: red; }
+p { color: #ff0000; }
+p { color: rgb(255, 0, 0); }
+p { color: rgba(0, 0, 0, 1); }
+</style>
+<!-- rgba Controla a transparência -->
+
+Exemplo:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meus estilos</title>
+    <style>
+        body { 
+            background-color: red; 
+            color:green; 
+        }
+    </style>
+</head>
+ 
+<body>
+    <p>Olá mundo</p>
+</body>
+ 
+</html>
+
+<!-- Imagens -->
+<img src="endereço da imagem">
+<img src="url" width="600px"> Largura 600 pixels
+<img src="url" height="600px"> Altura 600 pixels
+
+<!-- Linhas e Listas -->
+<hr> Linha horizontal
+
+
+<!-- Lista ordenada -->
+<ol>
+<li>Primeiro elemento</li>
+<li>Segundo elemento</li>
+<li>Terceiro elemento</li>
+<li> Cada novo elemento é inserido com essa tag</li>
+</ol>
+<!-- Lista não ordenada -->
+<ul>
+<li>Primeiro elemento</li>
+<li>Segundo elemento</li>
+<li>Terceiro elemento</li>
+<li> Cada novo elemento é inserido com essa tag</li>
+</ul>
+
+<!-- Links -->
+<a href="http://url">Nome do site</a>
+
+<!-- Tabelas -->
+<table></table> Tabela
+<tr></tr> Linhas
+<td></td> Célula
+<th></th> Células do cabeçalho
+
+<table>
+	<tr><th>Title 1</th><th>Title 2</th><th>Title 3</th></tr>
+	<tr><td>1</td><td>2</td><td>3</td></tr>
+	<tr><td>4</td><td>5</td><td>6</td></tr>
+	<tr><td>7</td><td>8</td><td>9</td></tr>
+</table>
+
+<!-- Tags estrututais, que auxiliam nas posições e não afetam no que aparece -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página completa</title>
+    <meta charset="UTF-8">
+</head>
+ 
+<body>
+	<!-- Cabeçalho -->
+	<header>
+		<nav></nav>
+	</header>
+	<!-- Conteúdo -->
+	<div>
+		<article>
+			<section></section>
+		</article>
+		<aside></aside>
+	</div>
+	<!-- Rodapé -->
+	<footer></footer>
+</body>
+</html>
+
+<!-- Formulários -->
+<form action="url.php" method="post ou get"></form>
+O formulário precisa dos campos action para onde enviar o formulário e o method, a forma de enviar. Dentro há os modos de formulário.
+
+<form action="processa.php" method="post">
+
+	<label>Text</label>
+	<input type="text" name="texto1" placeholder="texto default"><br>
+
+	<label>Password</label>
+	<input type="password" name="senha"><br>
+
+	<label>Oculto</label>
+	<input type="hidden" name="informacao_oculta" value="mensagem oculta"><br>
+
+	<label>Select</label>
+	<select name="selecao">
+		<option value="1">Opção 1</option>
+		<option value="2">Opção 2</option>
+	</select><br>
+
+	<label>Radio</label>
+	<input type="radio" name="radio1" value="1">Valor 1
+	<input type="radio" name="radio1" value="2">Valor 2<br>
+
+	<label>Checkbox</label>
+	<input type="checkbox" name="ck1" value="1" checked>Valor 1
+	<input type="checkbox" name="ck1" value="2">Valor 2
+	<input type="checkbox" name="ck1" value="3">Valor 3<br>
+
+	<input type="submit" value="Enviar" name="submit">
+
+</form>

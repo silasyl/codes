@@ -57,16 +57,21 @@ tipo do objeto (Commit), tamanho, tree: sha1 tree, parente: sha1 parent, autor: 
 
 
 Comandos com GIT:
-git init: Inicializa o repositório GIT
+git init: Inicializa o repositório GIT (local)
 
 git add .: Iniciar o versionamento
 Adiciona o arquivo, indo de Untracked para Tracked (Staged)
 git add em um arquivo Modified, muda para Staged
 git add *: adiciona tudo para staged
+git add *.txt: adiciona todos de uma extensão
+git add -A: adiciona todos os modificados
+git checkout HEAD: volta commit para workspace
+git checkout: volta add para workspace
 
 git commit: Criar um commit
 Retorna os arquivos de Staged para Unmodified
 git commit -m "mensagem"
+git commit --amend: muda a mensagem
 
 git status: Mostra o status
 git config --list: Mostra configurações do git
@@ -74,13 +79,40 @@ git config --global --unset user.email: resetar email
 git config --global --unset user.nickname: resetar nickname
 git config --global user.email "email": seta o email
 git config --global user.nickname "nick": seta o nick
+git config --global core.editor EDITOR (SublimeText, Notepad++, Vim)
 git remote add origin https://github.com/silasyl/repositorio.git: aponta ao repositório remoto no github
 git remote -v: lista os repositórios remotos
-git push origin master: envia o repositório local para o remoto
+git push -u origin master: envia o repositório local para o remoto
+
+Cor de linhas:
+git config --global color.ui auto
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+
+Comparação:
+git diff: compara add e workspace
+git diff HEAD: compara commit e workspace
 
 Conflitos no GitHub
 git pull origin master: puxa o repositório remoto e confere
 git clone url.git: clona o repositório de outra pessoa
+git fetch origin: atualiza todo o repositório local com todos os commits e versões do remoto (remoto para commit)
+git reset --hard origin/master: desfaz as alterações para a versão do remoto
+
+Branch:
+git branch: mostra todos os branches no repositório remoto e o utilizado
+git checkout -b nome_branch: cria um novo branch no repositório local e muda para ele
+git checkout master: volta para branch master
+git merge nome_branch: combina o branch com o branch atual (ex master)
+git branch -d nome_branch: deleta o branch
+git log: log dos commits realizados
+gitk: abre a interface gráfica do git
+
+Tags:
+git tag 1.0.0 1b2e1d63ff: 10 primeiros caracteres do id de commit que quer referenciar
+git log: mostra, entre outras coisas, o id de commit
+
 
 
 
@@ -113,6 +145,36 @@ SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
 
 
 
+## JavaScript:
+npm install dotenv
+
+Arquivo .env:
+USER_DB = silasyl
+PSW_DB = adminsilas
+PORT = 3000
+
+Arquivo Sample-env
+USER_DB=
+PSW_DB=
+PORT=
+
+Arquivo .gitignore:
+node_modules
+.env
+
+Código fonte:
+import dotenv from 'dotenv';
+dotenv.config();
+
+const uri = `mongodb+srv://${process.env.USER_DB}:${process.env.PSW_DB}@cluster0.3o6tz.mongodb.net/bank?retryWrites=true&w=majority`;
+
+app.listen(process.env.PORT, () => {
+  console.log('API Iniciada');
+});
+
+
+
+
 
 
 ## Guia rápido
@@ -122,3 +184,24 @@ git commit -m "mensagem"
 	git status: Mostra o status
 git remote add origin https://github.com/silasyl/repository
 git push origin master: envia o repositório local para o remoto
+
+## Branch
+$ git checkout -b [nome]
+git add files
+git commit -m "message"
+git push origin [nome]
+
+git checkout master
+git merge [nome]
+git branch -d [nome]
+
+vim:
+esc
+:wq
+
+MongoDB import:
+mongoimport --uri "mongodb+srv://<USER>:<PASSW>@cluster0.3o6tz.mongodb.net/<DATABASE>?retryWrites=true&w=majority" --collection <COLLECTION> --drop --type csv --headerline --file C:\Silas\grades.csv
+
+mongoimport --uri "mongodb+srv://silasyl:adminsilas@cluster0.3o6tz.mongodb.net/grades?retryWrites=true&w=majority" --collection students --drop --type csv --headerline --file C:\Silas\grades.csv
+
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging

@@ -1,0 +1,213 @@
+# Inicializa um banco de dados
+mongod
+
+# Definir diretório para banco de dados
+mongod --dbpath="C:\Users\Silas\AppData\Local\Programs\Microsoft VS Code\data\Modulo04\db"
+
+# Acessar o banco de dados
+mongo -host localhost:27017
+
+# Ajuda
+db.help()
+
+
+# Mostra os bds já existentes
+show dbs
+
+# Ver qual bd está conectado no momento
+db
+
+# Acessar um bd e criar, se não existe
+use [nome_do_banco]
+
+# Apagar um bd (logado no bd)
+db.dropBatabase()
+
+
+## Coleções
+# Criar coleção
+db.createCollection (name, options)
+Options:
+	capped
+	size
+	max
+	validator
+	validationLevel
+	validationAction
+
+# Consultar uma coleção
+show collections
+
+# Apagar uma coleção
+db.[COLLECTION].drop()
+
+
+## Documentos
+# Inserir documentos
+db.[COLLECTION].insertOne()		: Insere um documento
+db.[COLLECTION].insertMany()	: Insere múltiplos documentos
+db.[COLLECTION].insert()		: Insere um ou mais documentos
+
+
+# Consultar documentos
+
+db.[COLLECTION].find()			: retorna os dados linha a linha
+db.[COLLECTION].find().pretty()		: retorna formatado
+db.[COLLECTION].findOne()		: retorna o primeiro registro
+
+db.[COLLECTION].find().limit(NUMBER)		: limita o número de documentos a exibir
+db.[COLLECTION].find().limit(NUMBER).skip(NUMBER)		: Pula um documento
+
+# Ordenar documentos
+db.[COLLECTION].find().sort({CAMPO_1: 1, CAMPO_2:-1})
+Ex:
+db.medicamentos.find({}, {_id: 0, produto: 1}).sort({produto:-1})
+
+
+db.[COLLECTION].find(query, projection)		: busca por query: projection = 1 mostra, projection = 0 oculta
+Ex:
+db.medicamentos.find({}, {_id: 0})
+db.medicamentos.find({}, {_id: 0, produto: 1})
+
+## query									: query permite o uso de operadores
+# Operadores lógicos
+	$and	: Retorna todos os documentos que atendem as condições especificadas
+	$not	: Inverte o critério da query retornando todos os valores que não atendem a query
+	$nor 	: Retorna todos os documentos que não atendem os critérios em ambos os casos
+	$or 	: Retorna todos os documentos que atendem uma das condições
+
+Ex:
+db.medicamentos.find({$and:[{produto: "NOVALGINA"}, {tarja: "Tarja Vermelha"}]}).pretty()
+
+# Operadores de comparação
+	$eq		: Compara com os valores dos campos que possuem o valor especificado
+	$gt		: Compara com os valores dos campos que possuem o valor maior que o especificado
+	$gte	: Compara com os valores dos campos que possuem o valor maior ou igual ao especificado
+	$in 	: Compara com os valores dos campos que possuem um dos valores especificados dentro do vetor
+	$lt 	: Compara com os valores dos campos que possuem o valor menor que o especificado
+	$lte 	: Compara com os valores dos campos que possuem o valor menor ou igual ao especificado
+	$ne 	: Compara com os valores dos campos que não possui o valor especificado
+	$nin 	: Compara com os valores dos campos que não possui um dos valores especificados dentro do vetor
+
+Ex:
+db.medicamentos.find({preco: {$gt:20}}).pretty()
+
+
+# Atualizar documentos (update)
+db.[COLLECTION].updateOne()			: Atualiza um único documento na coleção
+
+db.[COLLECTION].updateOne(<filter>, <update>, <options>)		: Atualiza o primeiro documento com critério de filter
+options:
+	$inc 	: Utilizado para incrementar o valor de um campo com o valor do parâmetro
+	$min 	: Utilizado para atualizar os valores dos campos com o valor do parâmetro, cujo valor atual seja maior que o valor do parâmetro
+	$max 	: Utilizado para atualizar os valores dos campos com o valor do parâmetro, cujo valor atual seja menor que o valor do parâmetro
+	$set 	: Utilizado para atualizar o valor de um campo ou criar um novo campo
+	$unset 	: Utilizado para remover os campos dos documentos
+	$mul 	: Utilizado para multiplicar o valor de um campo com o valor do parâmetro
+	$currentDate 	: Atualiza o campo data com a data e hora atual
+Ex:
+db.medicamentos.updateOne({tarja:"Tarja Vermelha"},{$set: {tarja:"Tarja Preta"}})
+
+
+db.[COLLECTION].updateMany()		: Atualiza múltiplos documentos na coleção
+Ex: 
+db.medicamentos.updateMany({tarja:"Tarja Vermelha"},{$set: {tarja:"Tarja Preta"}})
+db.student.updateMany({}, {$currentDate: {lastModified:true, timestamp:{$type:"timestamp"}}})
+db.student.updateMany({}, {$unset: {timestamp:1}})
+
+
+db.[COLLECTION].replaceOne()		: Insere um ou mais documentos na coleção
+Ex:
+db.medicamentos.replaceOne({produto:"DIPIRONA"},{produto:"DIPIRONA SODICA", tarja:"Venda Livre", tipo:"Genérico", preco: 12.29})
+db.student.replaceOne({_id:ObjectId("NUMERO_DO_ID")},{NOVO DADO})
+
+
+# Exclusão de documentos (delete)
+db.[COLLECTION].deleteOne(<filter>)		: Deleta um único documento na coleção
+db.[COLLECTION].deleteMany(<filter>)	: Deleta múltiplos documentos na coleção
+
+
+# Comandos em massa (BulkWrite)
+db.[COLLECTION].bulkWrite([<operacao 1>, <operacao 2>, ...], options)
+	operacoes: insertOne(), updateOne(), updateMany(), deleteOne(), deleteMany(), replaceOne()
+Ex:
+db.student.bulkWrite([
+	{insertOne: {
+		"document": {name: "Thiago Peixoto", subject: "Fisica", type: "Prova Final", value: 16, timestamp: new Date()}}
+	},
+	{insertOne: {
+		"document": {name: "Patricia Rafaela", subject: "Portugues", type: "Trabalho Pratico", value: 21.3, timestamp: new Date()}}	
+	},
+	{updateOne: {
+		"filter": {name: "Marco Antonio"}, "update": {$set: {subject: "Historia"}}}
+	},
+	{deleteOne: {
+		"filter": {name: "Pedro Augusto", type: "Trabalho Pratico", subject: "Historia"}}
+	},
+	{replaceOne: {
+		"filter": {name: "Claudia Romualdo"}, "replacement": {name: "Tais Bernardes", subject: "Fisica", type: "Trabalho Pratico", value: 12, lastModified: new Date()}}
+	}
+], {ordered: false})
+ordered: false 			: Realiza em paralelo
+
+
+# Índices
+db.[COLLECTION].createIndex({CAMPO:1}) 			: Criar índice. 1 ou -1 para ascendente ou descendente
+Ex:
+db.medicamentos.createIndex({produto:1})
+
+db.[COLLECTION].getIndexes() 					: Consultar os índices
+db.[COLLECTION].dropIndex()						: Deleta um índice
+Ex:
+db.medicamentos.dropIndex("produto_1") 			: Nome do índice
+db.medicamentos.dropIndex({"produto": 1})		: Campo do índice
+db.[COLLECTION].dropIndexes()					: Deleta todos menos de _id
+
+db.[COLLECTION].createIndex({campo1: "text", campo2: "text", ...})		: Index textual
+Ex:
+db.livros.createIndex({titulo: "text"})
+
+db.[COLLECTION].find({$text: {$search: "texto a ser procurado"}}) 		: Busca em índice textual
+db.livros.find({$text: {$search: "Bootcamp IGTI MongoDB"}}, {score: {$meta: "textScore"}}).sort({score:{$meta: "textScore"}}) 				: Monta o score, baseado em proximidade da busca e ordena por score
+
+
+## Modelagem
+
+# Modelo de dados incorporados (embedded data)
+# modelo de dados referenciados
+
+
+## Agregações
+db.[COLLECTION].aggregate() 			: Realiza as agregações
+db.[COLLECTION].aggregate([
+	{$project: {}},
+	{$match: {campo1: "X"}},
+	{$group: {_id: "$campo2", total: {$sum: "$campo3"}}},
+	{$sort: {}},
+	{$skip: numero_inteiro},
+	{$limit: numero_inteiro}
+])
+
+Ex:
+db.medicamentos.aggregate([{$group: {_id: "$tarja", media: {$avg:"$preco"}}}])
+db.student.aggregate([
+	{$match: {subject: "Historia"}},
+	{$group: {_id: null, total: {$sum: "$value"}}}
+	])
+db.student.aggregate([
+	{$match: {subject: "Historia"}},
+	{$group: {_id: {subject: "$subject", type: "$type"}, total: {$sum: "$value"}}}
+	])
+
+
+
+Métodos de agregação singulares
+db.[COLLECTION].count(<query>)
+db.[COLLECTION].countDocuments(<query>)			: Conta a quantidade de documentos de acordo com a query
+Ex:
+db.medicamentos.countDocumentos({tarja: "Venda Livre"})
+
+db.[COLLECTION].distinct(field, query) 			: Identifica valores distintos na coleção
+Ex:
+db.medicamentos.distinct("produto")
+

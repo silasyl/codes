@@ -1,0 +1,12 @@
+Documento django:
+https://docs.djangoproject.com/en/3.1/intro/overview/
+
+Regex:
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
+
+
+https://docs.djangoproject.com/en/3.1/topics/http/urls/
+Reversing namespaced URLs¶
+
+Social Django
+https://hashedin.com/blog/a-guide-to-using-social-login-with-django/

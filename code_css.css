@@ -1,0 +1,136 @@
+/* CSS: Cascading Style Sheet
+
+- As folhas de estilo em cascata (CSS) são um conjunto de regras de formatação que controlam a aparência de uma página da Web.
+
+Conteúdo (HTML) + Aparência (CSS) = website
+
+Por que estilo em cascata?
+Há várias formas de inserir modificações no estilo com CSS
+Ordem de prioridade:
+- Efeito cascata
+
+Efeito cascata:
+Menor prioridade:
+- folha de estilo padrão do navegador;
+- folha de estilo do usuário (se existir);
+- folha de estilo do desenvolvedor;
+	- estilo externo (importado);
+	- estilo incorporado (definido no head);
+	- estilo inline (dentro de um elemento);
+- Marcação !important (tem prioridade sobre as outras)
+Maior prioridade
+
+Declarando códigos CSS
+Há três formas:
+1- Inline (style=" ")
+2- Tag <style>
+3- Importação /link */
+
+/* Inline:
+Feita diretamente na tag: */
+<div style = "height:100px"></div>
+<p style = "color:red">Meu texto</p>
+
+/* Tag <style>:
+Códigos são declarados diretamente no código HTML através da tag <style> */
+<head>
+	<style>
+		p{color:red;}
+	</style>
+</head>
+
+/* Importação:
+Estilo importado de um arquivo ".css" separado */
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+/* Sintaxe do arquivo css: */
+seletor {
+	propriedade: valor;
+}
+
+/* CSS */
+
+body {
+	font-family: Arial;
+	font-style: italic;
+}
+p{
+	font-family: Courier;
+	font-style: normal;
+}
+
+/* Seletores:
+- Classes
+- IDs
+- Tags */
+
+/* Diferenças classes vs. IDs
+- IDs:
+	identificadores únicos
+	Declarados com #
+	URL (ex: www.site.com/#id)
+- Classes:
+	Apresenta um estilo a um grupo de elemento
+	Declarado com . */
+
+/* Plano de fundo:
+- Aplicados a body ou qualquer outra tag (div)
+- Inserindo uma cor */
+	background-color: #F4F4F4
+/*- Inserindo uma imagem */
+	background-image:url(app/img/bg.jpg)
+
+/* Posição (position)
+- Define a posição de um elemento em uma página
+- Essas coordenadas são definidas pelas propriedades:
+- position: fixed
+	Elemento fica fixo em uma mesma posição
+	Ex: menus
+- position: relative
+	Posiciona o elemento com base no canto superior esquerdo
+	Float: left ou right
+	Uma div relative não sobrepõe outra
+- position: absolute
+	Utiliza o canto superior esquerdo do elemento pai para se posicionar
+	Se não estiver dentro de outro elementp, utiliza o body para se referenciar
+	Uma div pode sobrepor outra */
+
+/* Texto: */
+- Fonte
+	font-family: helvetica, arial;
+- Cor
+	color: #111;
+- Tamanho
+	font-size: 12px;
+- Negrito
+	font-weight: bold;
+- Espaçamento entre linhas
+	line-weight: 1.5; 
+
+/* Tamanho e espaçamento: */
+- Largura
+	width: 300px;
+- Altura
+	height: 200px;
+
+/* Box model: */
+div {
+	margin: 10px;
+	padding: 10px;
+	border: 10px solid #000;
+}
+
+/* Superior e inferior / direita e esquerda */
+margin: 20px 10px;
+
+/* Sentido horário */
+margin: 20px 5px 10px 0px;
+
+/* Eliminando configurações do browser */
+*{
+	margin: 0;
+	padding: 0;
+}
+

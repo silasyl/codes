@@ -1,0 +1,39 @@
+Terminal:
+heroku login
+
+Diretório da aplicação:
+heroku create
+git push [heroku] master
+
+Renomear:
+heroku apps:rename backend-api-students
+heroku apps:rename (novo nome)
+heroku apps:rename [new name] --app [old name]
+
+Iniciar a aplicação:
+heroku ps:scale web=1
+
+Acesso:
+heroku open
+
+Log de erro:
+heroku log -tails
+
+Arquivo Procfile:
+web: node -r dotenv/config index.js
+	Commit para repositório remoto
+	git heroku push master
+
+Site Heroku:
+Settings:
+Config Vars
+
+Deploy:
+Github:
+Connect ao repositório
+Automatic deploys:
+Enable Automatic Deploys
+
+Executar localmente:
+heroku local web
+

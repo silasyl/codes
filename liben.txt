@@ -1,0 +1,153 @@
+- liben/urls.py:
+
+url(r'^i18n/', include('django.conf.urls.i18n')),
+# Configura o idioma do sistema com a pasta locale
+
+
+url(r'^media/(?P<path>.*)$', serve, { 'document_root': settings.MEDIA_ROOT}),
+url(r'^static/(?P<path>.*)$', serve, { 'document_root': settings.STATIC_FILE_ROOT}),
+# Faltando o arquivo settings que está no .gitignore
+
+
+url(r'^$',general_views.app,name='app'),
+url(r'^app/$',general_views.app,name='app'),
+# Chama main/views.py/app
+
+@check_mode			# Confere mode.down e mode.readonly
+def app(request):	# Redireciona de acordo com o role (request.user.group e request.session)
+# Roles: 	superadmin (dashboard)
+			power_plant_user (power_plant_user_dashboard)
+			normal_user (user_dashboard)
+			partner_user (partner_user_dashboard)
+			company_user (company_dashboard)
+			internal_user (internal_user_dashboard)
+			(user_registration)
+
+
+url(r'^switch-language/$', general_views.switch_language, name='switch_language'),
+# Chama main/views.py/switch_language
+
+def switch_language(request):	# Seta request.session na língua selecionada e seta o cookie
+# Se request.user.is_authenticated, redireciona a (user_dashboard), senão (users:user_registration)
+
+
+url(r'^app/user-dashboard/$',general_views.user_dashboard,name='user_dashboard'),
+# Chama main/views.py/user_dashboard
+
+@check_mode						# Confere mode.down e mode.readonly
+@language 						# Confere o cookie de lang e ativa a língua
+@login_required 				# Confere se o usuário está logado (django.contrib.auth.decorators)
+@check_user_status 				# Checa se request.user.is_superuser e se é submit do usuário.
+								# Caso não, redireciona a users/create_partner_user_details
+								#								create_user_details
+								#								create_power_plant_user_details
+								#								create_company_details
+def user_dashboard(request):	# Confere se existe request.user e faz render de user_dashboard.html
+	# user_details recebe modelo UserDetails (dados de usuário tais como dados pessoais, endereço)
+	# user_conection_details recebe modelo UserConectionDetails (dados de custo, conta, tarifa e foreign keys)
+		# user_details foreign key para UserDetails
+		# utility_company foreign key para UtilityCompany
+		# energy_fare foreign key para EnergyFare
+
+
+url(r'^logout/$',general_views.logout,name='logout'),
+# Chama main/views.py/logout
+
+def logout(request): 	# Salva os dados de CompanyDetails e UserDetails e faz logout
+# Redireciona a (auth_logout)
+
+
+url(r'^app/company-dashboard/$',general_views.company_dashboard,name='company_dashboard'),
+# Chama main/views.py/company_dashboard
+
+@check_mode 						# Confere mode.down e mode.readonly
+@language 							# Confere o cookie de lang e ativa a língua
+@login_required 					# Confere se o usuário está logado (django.contrib.auth.decorators)
+@check_registration_status 			# Checa se request.user.is_superuser e se é submit do usuário.
+									# Caso não, redireciona a users/create_partner_user_details
+									#								create_user_details
+									#								create_power_plant_user_details
+									#								create_company_details
+def company_dashboard(request): 	# Confere se existe request.user e faz render de company_dashboard.html
+	# company_details recebe modelo CompanyDetails (dados da companhia como endereço, e também dados do usuário)
+	# conection_details recebe modelo ConectionDetails (dados de custo, conta, tarifa, contrato e foreign keys)
+		# company_details foreign key para CompanyDetails
+		# utility_company foreign key para UtilityCompany
+		# energy_fare foreign key para EnergyFare
+
+
+url(r'^app/dashboard/$',general_views.dashboard,name='dashboard'),
+# Chama main/views.py/dashboard
+
+@check_mode 					# Confere mode.down e mode.readonly
+@language 						# Confere o cookie de lang e ativa a língua
+@login_required 				# Confere se o usuário está logado (django.contrib.auth.decorators)
+@check_registration_status 		# Checa se request.user.is_superuser e se é submit do usuário.
+								# Caso não, redireciona a users/create_partner_user_details
+								#								create_user_details
+								#								create_power_plant_user_details
+								#								create_company_details
+def dashboard(request):			# Faz render das companhias e usuários visíveis: admin_dashboard.html
+	# company_details recebe modelo CompanyDetails
+	# user_details recebe modelo UserDetails
+
+
+url(r'^app/partner-user-dashboard/$',general_views.partner_user_dashboard,name='partner_user_dashboard'),
+# Chama main/views.py/partner_user_dashboard
+
+@check_mode 												# Confere mode.down e mode.readonly
+@login_required(login_url='/app/users/accounts/login/')		# Confere se o usuário está logado
+@partner_user_status 										# Checa se request.user.is_superuser e é request.user.
+															# Caso não, redireciona a users/create_partner_user_details
+															# 								create_power_plant_user_details
+															# 								create_company_details
+def partner_user_dashboard(request): 						# Faz render do partner: partner_dashboard.html
+
+
+url(r'^app/power-plant-user-dashboard/$',general_views.power_plant_user_dashboard,name='power_plant_user_dashboard'),
+# Chama main/views.py/power_plant_user_dashboard
+
+@check_mode 												# Confere mode.down e mode.readonly
+@login_required(login_url='/app/users/accounts/login/') 	# Confere se o usuário está logado
+@power_plant_user_status									# Checa se request.user.is_superuser e é request.user.
+															# Caso não, redireciona a powerplant/create_power_plant_user_details
+def power_plant_user_dashboard(request):					# Faz render dos power plants: power_plant_dashboard.html
+
+
+url(r'^app/update-customers/$', general_views.update_customer_from_api, name="update_customers"),
+# Chama main/views.py/update_customer_from_api
+
+@check_mode 								# Confere mode.down e mode.readonly
+@language 									# Confere o cookie de lang e ativa a língua
+@login_required 							# Confere se o usuário está logado (django.contrib.auth.decorators)
+@check_user_status 							# Checa se request.user.is_superuser e se é submit do usuário.
+											# Caso não, redireciona a users/create_partner_user_details
+											#								create_user_details
+											#								create_power_plant_user_details
+											#								create_company_details
+def update_customer_from_api(request): 		# Atualiza um campo de customer
+
+
+url(r'^app/internal_user_dashboard/$', general_views.internal_user_dashboard, name="internal_user_dashboard"),
+# Chama main/views.py/internal_user_dashboard
+
+@check_mode 							# Confere mode.down e mode.readonly
+@language 								# Confere o cookie de lang e ativa a língua
+@login_required							# Confere se o usuário está logado (django.contrib.auth.decorators)
+def internal_user_dashboard(request): 	# Faz render internal_user_dashboard.html
+
+
+url(r'^app/users/', include(('users.urls', 'users'), namespace="users",)),
+# Redireciona a users/urls.py
+
+
+url(r'^app/power-plant/', include(('powerplant.urls', 'powerplant'), namespace="powerplant",)),
+# Redireciona a powerplant/urls.py
+
+
+url(r'^app/accounts/', include('registration.backends.default.urls')),
+# Redireciona a registration/backends/default/urls.py
+
+
+url(r'^oauth/', include('social_django.urls', namespace='social')),
+# Redireciona a social_django/urls.py (login com google?)

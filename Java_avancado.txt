@@ -21,7 +21,7 @@ Programação funcional é o processo de construir software através de composi�
 Na programação funcional tentamos programar de forma declarativa, onde declaramos o que desejamos, sem explicitar como será feito. Qual o usuário 15? Quais os erros dessas informãções?
 
 
-## Lambda e API Lampda do Java 8
+## Lambda e API Lambda do Java 8
 # Lambda no Java
 Os lambdas obedecem o conceito do paradigma funcional, com eles podemos facilitar legibilidade do nosso código, além disso com a nova API Funcional do Java podemos ter uma alta produtividade para lidar com objetos.
 Primeiramente, devemos entender o que são interfaces funcionais.
